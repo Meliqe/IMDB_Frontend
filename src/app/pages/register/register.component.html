@@ -1,1 +1,165 @@
-<p>register works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Glassmorphism Register Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('/assets/assortment-cinema-supplies.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Form Konteyneri */
+    form {
+      width: 470px;
+      background-color: rgba(255, 255, 255, 0.13);
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+      padding: 30px 40px;
+    }
+
+    form h3 {
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 42px;
+      text-align: center;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    /* Grid Yapısı: Label ve Input Yan Yana */
+    .form-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px; /* Her satır arasına daha az boşluk */
+    }
+
+    .form-group label {
+      width: 25%; /* Label genişliği */
+      font-size: 16px;
+      font-weight: 500;
+      color: white;
+    }
+
+    .form-group input {
+      width: 70%;
+      height: 50px; /* Input yüksekliği büyütüldü */
+      background-color: rgba(255, 255, 255, 0.07);
+      border: none;
+      border-radius: 5px; /* Köşeleri hafif yuvarlatıldı */
+      padding: 0 10px;
+      color: white;
+      font-size: 16px; /* Yazı boyutu büyütüldü */
+    }
+
+    input::placeholder {
+      color: #e5e5e5;
+    }
+
+    /* Focus Efektlerini Kaldır */
+    .form-group input:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    /* Buton */
+    button {
+      margin-top: 30px; /* Inputlara daha yakın */
+      width: 100%;
+      height: 50px;
+      background-color: #ffffff;
+      color:#858585;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* Giriş Yap Linki */
+    .login-link {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      color: white;
+    }
+
+    .login-link a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+    label{
+      display: block;
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 500;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<form>
+  <h3>Kayıt Olun!</h3>
+
+  <!-- İsim -->
+  <div class="form-group">
+    <label for="name">İsim</label>
+    <input type="text" id="name" placeholder="İsim">
+  </div>
+
+  <!-- Soyisim -->
+  <div class="form-group">
+    <label for="surname">Soyisim</label>
+    <input type="text" id="surname" placeholder="Soyisim">
+  </div>
+
+  <!-- Telefon -->
+  <div class="form-group">
+    <label for="phone">Telefon</label>
+    <input type="tel" id="phone" placeholder="Telefon">
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label for="email">E-Mail</label>
+    <input type="email" id="email" placeholder="E-Mail">
+  </div>
+
+  <!-- Şifre -->
+  <div class="form-group">
+    <label for="password">Şifre</label>
+    <input type="password" id="password" placeholder="Şifre">
+  </div>
+
+  <!-- Kayıt Ol Butonu -->
+  <button>Kayıt Ol</button>
+
+  <!-- Giriş Yap Linki -->
+  <p class="login-link">
+    Hesabınız var mı? <a href="/login">Giriş yapın</a>
+  </p>
+</form>
+</body>
+</html>

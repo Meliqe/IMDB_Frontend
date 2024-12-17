@@ -126,20 +126,20 @@
     .social i{
       margin-right: 4px;
     }
-    .register-link {
-      margin-top: 20px;
+    .login-link {
+      margin-top: 15px;
       text-align: center;
       font-size: 14px;
       color: white;
     }
 
-    .register-link a {
+    .login-link a {
       color: white;
       text-decoration: none;
       font-weight: 600;
     }
 
-    .register-link a:hover {
+    .login-link a:hover {
       text-decoration: underline;
     }
 
@@ -181,6 +181,9 @@
 
   <!-- Giriş Yap Butonu -->
   <button type="submit" [disabled]="loginForm.invalid">Giriş Yap</button>
+  <p class="login-link">
+    Hesabınız yok mu? <a href="/register">Kayıt olun</a>
+  </p>
 </form>
 
 </body>

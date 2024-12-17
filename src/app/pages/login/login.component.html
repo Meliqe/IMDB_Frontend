@@ -150,19 +150,38 @@
   <div class="shape"></div>
   <div class="shape"></div>
 </div>
-<form>
+<form #loginForm="ngForm" (ngSubmit)="onLogin()" novalidate>
   <h3>Giriş Yapın!</h3>
 
-  <label for="username">E-Mail</label>
-  <input type="text" name="EmailID"  placeholder="E-mail" id="username">
-
-  <label for="password">Şifre</label>
-  <input type="password" name="Password"  placeholder="Şifre" id="password">
-
-  <button (click)="onLogin()">Giriş Yap</button>
-  <div class="register-link">
-    Hesabınız yok mu? <a href="/register">Kayıt olun</a>  <!--routerLink veremedim text gibi davranıyor-->
+  <!-- Email Input -->
+  <label for="email">E-Mail</label>
+  <input type="email"
+         [(ngModel)]="email"
+         name="email"
+         placeholder="E-mail"
+         id="email"
+         required
+         #emailInput="ngModel">
+  <div *ngIf="emailInput.invalid && emailInput.touched" style="color: white;">
+    Email alanı zorunludur ve geçerli bir formatta olmalıdır.
   </div>
+
+  <!-- Password Input -->
+  <label for="password">Şifre</label>
+  <input type="password"
+         [(ngModel)]="password"
+         name="password"
+         placeholder="Şifre"
+         id="password"
+         required
+         #passwordInput="ngModel">
+  <div *ngIf="passwordInput.invalid && passwordInput.touched" style="color: white;">
+    Şifre alanı zorunludur.
+  </div>
+
+  <!-- Giriş Yap Butonu -->
+  <button type="submit" [disabled]="loginForm.invalid">Giriş Yap</button>
 </form>
+
 </body>
 </html>

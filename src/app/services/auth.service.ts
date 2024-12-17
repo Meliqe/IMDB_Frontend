@@ -13,10 +13,10 @@ export class AuthService {
   //enjekte edilir.
 
   login(credentials: { email:string; password: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials);
+    return this.http.post<any>(`${this.apiUrl}/giris`, credentials);
   }
 
   register(user: { name: string; surname:string; email:string; password: string ; phone:string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/register`, user);
+    return this.http.post<any>(`${this.apiUrl}/kayit`, user);
   }
 }

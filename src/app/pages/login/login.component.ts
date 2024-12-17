@@ -3,6 +3,7 @@ import {AuthService} from '../../services/auth.service';
 import {FormsModule} from '@angular/forms';
 import {response} from 'express';
 import {NgIf} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,32 +20,26 @@ export class LoginComponent {
   password: string='';
   errorMessage:string='';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService , private router: Router) { }
 
   onLogin(){
-
-    if (!this.email || !this.password) {
-      this.errorMessage="Lütfen tüm alanları doldurun..."
-      return;
-    }
-
     const credentials = {email:this.email, password:this.password};
     this.authService.login(credentials).subscribe({
       next:(response)=>{
         if(response.token){
           console.log("Giriş Başarılı:"+response.token);
           this.errorMessage='';
-        }
-        else {
-          console.error("Token alınamadı.");
-          this.errorMessage = 'Geçersiz e-mail veya şifre!';
+          this.router.navigate(['/deneme']);
         }
       },
       error: (err) => {
         if (err.status === 400) {
-          this.errorMessage = "Geçersiz E mail formatı";
-        } else {
-          this.errorMessage = 'Bir hata oluştu! Lütfen tekrar deneyin.';
+          this.errorMessage = err.error?.message || "Geçersiz E-mail formatı.";
+        }else if(err.status === 401) {
+          this.errorMessage = err.error?.message || "Hatalı giriş bilgileri...";
+        }
+        else {
+          this.errorMessage = err.error?.message || "Bir hata oluştu! Lütfen tekrar deneyin.";
         }
         console.error('Giriş hatası:', err);
       }

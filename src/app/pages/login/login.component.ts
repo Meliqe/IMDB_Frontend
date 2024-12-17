@@ -41,8 +41,8 @@ export class LoginComponent {
         }
       },
       error: (err) => {
-        if (err.status === 401) {
-          this.errorMessage = err.error.message;
+        if (err.status === 400) {
+          this.errorMessage = "Geçersiz E mail formatı";
         } else {
           this.errorMessage = 'Bir hata oluştu! Lütfen tekrar deneyin.';
         }

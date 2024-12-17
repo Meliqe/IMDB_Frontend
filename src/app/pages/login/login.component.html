@@ -161,7 +161,8 @@
          placeholder="E-mail"
          id="email"
          required
-         #emailInput="ngModel">
+         #emailInput="ngModel"
+         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
   <div *ngIf="emailInput.invalid && emailInput.touched" style="color: white;">
     Geçerli bir e-mail girin.
   </div>

@@ -17,24 +17,37 @@ import {NgIf} from '@angular/common';
 export class LoginComponent {
   email: string='';
   password: string='';
+  errorMessage:string='';
 
   constructor(private authService: AuthService) { }
 
   onLogin(){
 
     if (!this.email || !this.password) {
-      alert('Lütfen tüm alanları doldurunuz.');
+      this.errorMessage="Lütfen tüm alanları doldurun..."
       return;
     }
 
     const credentials = {email:this.email, password:this.password};
-    this.authService.login(credentials).subscribe(
-      response=>{
-        console.log('Giriş Başarılı!', response);
+    this.authService.login(credentials).subscribe({
+      next:(response)=>{
+        if(response.token){
+          console.log("Giriş Başarılı:"+response.token);
+          this.errorMessage='';
+        }
+        else {
+          console.error("Token alınamadı.");
+          this.errorMessage = 'Geçersiz e-mail veya şifre!';
+        }
       },
-      error=>{
-        console.error('Giriş Başarısız:', error);
+      error: (err) => {
+        if (err.status === 401) {
+          this.errorMessage = err.error.message;
+        } else {
+          this.errorMessage = 'Bir hata oluştu! Lütfen tekrar deneyin.';
+        }
+        console.error('Giriş hatası:', err);
       }
-    )
-  }
+    })
+  };
 }

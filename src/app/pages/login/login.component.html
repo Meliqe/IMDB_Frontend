@@ -179,7 +179,10 @@
     Şifre alanı zorunludur.
   </div>
 
-  <!-- Giriş Yap Butonu -->
+  <div *ngIf="errorMessage" style="color: red; margin-top: 10px; text-align: center;">
+    {{ errorMessage }}
+  </div>
+
   <button type="submit" [disabled]="loginForm.invalid">Giriş Yap</button>
   <p class="login-link">
     Hesabınız yok mu? <a href="/register">Kayıt olun</a>

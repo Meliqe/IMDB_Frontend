@@ -154,12 +154,12 @@
   <h3>Giriş Yapın!</h3>
 
   <label for="username">E-Mail</label>
-  <input type="text" placeholder="E-mail" id="username">
+  <input type="text" name="EmailID"  placeholder="E-mail" id="username">
 
   <label for="password">Şifre</label>
-  <input type="password" placeholder="Şifre" id="password">
+  <input type="password" name="Password"  placeholder="Şifre" id="password">
 
-  <button>Giriş Yap</button>
+  <button (click)="onLogin()">Giriş Yap</button>
   <div class="register-link">
     Hesabınız yok mu? <a href="/register">Kayıt olun</a>  <!--routerLink veremedim text gibi davranıyor-->
   </div>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Glassmorphism Register Form</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -118,43 +117,54 @@
   </style>
 </head>
 <body>
-<form>
+<form #registerForm="ngForm" (ngSubmit)="onRegister()" novalidate>
   <h3>Kayıt Olun!</h3>
 
   <!-- İsim -->
   <div class="form-group">
     <label for="name">İsim</label>
-    <input type="text" id="name" placeholder="İsim">
+    <input type="text" name="isim" id="name" placeholder="İsim" required [(ngModel)]="name">
   </div>
 
   <!-- Soyisim -->
   <div class="form-group">
     <label for="surname">Soyisim</label>
-    <input type="text" id="surname" placeholder="Soyisim">
+    <input type="text" name="soyisim" id="surname" placeholder="Soyisim" required [(ngModel)]="surname" >
   </div>
 
   <!-- Telefon -->
   <div class="form-group">
     <label for="phone">Telefon</label>
-    <input type="tel" id="phone" placeholder="Telefon">
+    <input type="tel" name="telefon" id="phone" placeholder="Telefon" required [(ngModel)]="phone">
   </div>
 
-  <!-- Email -->
+
   <div class="form-group">
     <label for="email">E-Mail</label>
-    <input type="email" id="email" placeholder="E-Mail">
+    <input type="email" name="email" id="email" placeholder="E-Mail" required [(ngModel)]="email" #emailInput="ngModel"
+     pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    >
+  </div>
+  <div *ngIf="emailInput.invalid && emailInput.touched" style="color: white;">
+    Geçerli bir e-mail girin.
   </div>
 
-  <!-- Şifre -->
   <div class="form-group">
     <label for="password">Şifre</label>
-    <input type="password" id="password" placeholder="Şifre">
+    <input type="password" name="sifre" id="password" placeholder="Şifre" required [(ngModel)]="password"
+           #passwordInput="ngModel">
   </div>
 
-  <!-- Kayıt Ol Butonu -->
-  <button>Kayıt Ol</button>
+  <div *ngIf="passwordInput.invalid && passwordInput.touched" style="color: white;">
+    Şifre alanı zorunludur.
+  </div>
 
-  <!-- Giriş Yap Linki -->
+  <div *ngIf="errorMessage" style="color: red; margin-top: 10px; text-align: center;">
+    {{ errorMessage }}
+  </div>
+
+  <button type="submit" [disabled]="registerForm.invalid" >Kayıt Ol</button>
+
   <p class="login-link">
     Hesabınız var mı? <a href="/login">Giriş yapın</a>
   </p>

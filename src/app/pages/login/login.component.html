@@ -175,10 +175,10 @@
          placeholder="Şifre"
          id="password"
          required
-         #passwordInput="ngModel">
+         #passwordInput="ngModel"
+         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$">
   <div *ngIf="passwordInput.invalid && passwordInput && passwordInput.value" style="color: white;">
-    Şifre alanı zorunludur.
-  </div>
+    Şifre en az 6 karakter olmalı, büyük harf, küçük harf, rakam ve özel karakter içermelidir.  </div>
 
   <div *ngIf="errorMessage" style="color: red; margin-top: 10px; text-align: center;">
     {{ errorMessage }}

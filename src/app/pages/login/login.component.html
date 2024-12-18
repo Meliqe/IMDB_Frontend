@@ -163,7 +163,7 @@
          required
          #emailInput="ngModel"
          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" >
-  <div *ngIf="emailInput.invalid && emailInput.touched" style="color: white;">
+  <div *ngIf="emailInput.invalid && emailInput.touched && emailInput.value" style="color: white;">
     Geçerli bir e-mail girin.
   </div>
 
@@ -176,7 +176,7 @@
          id="password"
          required
          #passwordInput="ngModel">
-  <div *ngIf="passwordInput.invalid && passwordInput.touched" style="color: white;">
+  <div *ngIf="passwordInput.invalid && passwordInput && passwordInput.value" style="color: white;">
     Şifre alanı zorunludur.
   </div>
 

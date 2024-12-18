@@ -33,7 +33,9 @@ export class RegisterComponent {
         console.log('Backend Yanıtı:', response);
         if(response.success){
           console.log('Kayıt Başarılı');
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login']).then(() => {
+            window.location.reload();
+          });
         }
       },
       error:(err)=>{
@@ -48,8 +50,4 @@ export class RegisterComponent {
       }
     })
   }
-
-
-
-
 }

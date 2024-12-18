@@ -10,7 +10,7 @@
     }
 
     body {
-      background-image: url('/assets/assortment-cinema-supplies.jpg');
+      background-image: url('/assets/assortment-cinema-supplies.jpg') !important;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -120,32 +120,39 @@
 <form #registerForm="ngForm" (ngSubmit)="onRegister()" novalidate>
   <h3>Kayıt Olun!</h3>
 
-  <!-- İsim -->
+
   <div class="form-group">
     <label for="name">İsim</label>
-    <input type="text" name="isim" id="name" placeholder="İsim" required [(ngModel)]="name">
+    <input type="text" name="isim" id="name" placeholder="İsim" required [(ngModel)]="name" pattern="^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]+$"  #nameInput="ngModel">
+  </div>
+  <div *ngIf="nameInput.touched && nameInput.invalid && nameInput.value" style="color: white">
+    Sadece harf girebilirsiniz.
   </div>
 
-  <!-- Soyisim -->
+
   <div class="form-group">
     <label for="surname">Soyisim</label>
-    <input type="text" name="soyisim" id="surname" placeholder="Soyisim" required [(ngModel)]="surname" >
+    <input type="text" name="soyisim" id="surname" placeholder="Soyisim" required [(ngModel)]="surname" pattern="^[a-zA-ZğüşıöçĞÜŞİÖÇ\s]+$" #surnameInput='ngModel'>
+  </div>
+  <div *ngIf="surnameInput.touched && surnameInput.invalid && surnameInput.value" style="color: white">
+    Sadece harf girebilirsiniz.
   </div>
 
-  <!-- Telefon -->
+
   <div class="form-group">
     <label for="phone">Telefon</label>
-    <input type="tel" name="telefon" id="phone" placeholder="Telefon" required [(ngModel)]="phone">
+    <input type="tel" name="telefon" id="phone" placeholder="Telefon" required [(ngModel)]="phone" pattern="^05\d{9}$" #phoneInput="ngModel">
   </div>
-
-
+ <div *ngIf="phoneInput.touched && phoneInput.invalid && phoneInput.value" style="color: white">
+   Yanlış formatta numara...
+ </div>
   <div class="form-group">
     <label for="email">E-Mail</label>
     <input type="email" name="email" id="email" placeholder="E-Mail" required [(ngModel)]="email" #emailInput="ngModel"
      pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
     >
   </div>
-  <div *ngIf="emailInput.invalid && emailInput.touched" style="color: white;">
+  <div *ngIf="emailInput.invalid && emailInput.touched && emailInput.value" style="color: white">
     Geçerli bir e-mail girin.
   </div>
 
@@ -155,11 +162,11 @@
            #passwordInput="ngModel">
   </div>
 
-  <div *ngIf="passwordInput.invalid && passwordInput.touched" style="color: white;">
+  <div *ngIf="passwordInput.invalid && passwordInput.touched && passwordInput.value" style="color: white;">
     Şifre alanı zorunludur.
   </div>
 
-  <div *ngIf="errorMessage" style="color: red; margin-top: 10px; text-align: center;">
+  <div *ngIf="errorMessage" style="color: white; margin-top: 10px; text-align: center;">
     {{ errorMessage }}
   </div>
 

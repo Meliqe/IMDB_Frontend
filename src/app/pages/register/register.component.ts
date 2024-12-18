@@ -27,14 +27,17 @@ export class RegisterComponent {
 
   onRegister(){
     const credentials = {name:this.name,surname:this.surname,email:this.email,password:this.password,phone:this.phone};
+    console.log('Gönderilen veri:', credentials);
     this.authService.register(credentials).subscribe({
       next:(response)=>{
-        if(response==true){
+        console.log('Backend Yanıtı:', response);
+        if(response.success){
           console.log('Kayıt Başarılı');
           this.router.navigate(['/login']);
         }
       },
       error:(err)=>{
+        console.error(err);
         if(err.status === 401) {
           this.errorMessage='Kayıt oluşturulamadı!';
         }

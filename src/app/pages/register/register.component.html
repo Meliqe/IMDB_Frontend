@@ -10,7 +10,7 @@
     }
 
     body {
-      background-image: url('/assets/assortment-cinema-supplies.jpg') !important;
+      background-image: url('/assets/assortment-cinema-supplies.jpg') ;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -169,7 +169,11 @@
   </div>
 
   <button type="submit" [disabled]="registerForm.invalid" >Kayıt Ol</button>
-
+  <div *ngIf="successMessage" style="color: white; margin-top: 20px; text-align: center;">
+    {{ successMessage }}
+    <br>
+    <a href="/login" style="color: lightblue; text-decoration: underline;">Giriş yap</a>
+  </div>
   <p class="login-link">
     Hesabınız var mı? <a href="/login">Giriş yapın</a>
   </p>

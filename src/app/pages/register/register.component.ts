@@ -22,6 +22,7 @@ export class RegisterComponent {
   phone:string='';
   password:string='';
   errorMessage:string='';
+  successMessage:string='';
 
   constructor(private authService: AuthService , private router: Router) { }
 
@@ -33,9 +34,12 @@ export class RegisterComponent {
         console.log('Backend Yanıtı:', response);
         if(response.success){
           console.log('Kayıt Başarılı');
-          this.router.navigate(['/login']).then(() => {
-            window.location.reload();
-          });
+          this.successMessage='Kayıt başarlıyla oluşturuldu! Giriş yapabilirsiniz.';
+          this.name=''; //kayıt sonrası inputlar temizlensin
+          this.surname='';
+          this.email='';
+          this.phone='';
+          this.password='';
         }
       },
       error:(err)=>{

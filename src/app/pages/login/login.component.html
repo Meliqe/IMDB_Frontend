@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <title>Glassmorphism Login Form</title>
-
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -11,64 +9,67 @@
   <style media="screen">
     *,
     *:before,
-    *:after{
+    *:after {
       padding: 0;
       margin: 0;
       box-sizing: border-box;
     }
+
     body {
-      background-image: url('/assets/assortment-cinema-supplies.jpg') !important;
-      background-size:cover;
+      background-image: url('/assets/assortment-cinema-supplies.jpg');
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
     }
 
-    .background{
+    .background {
       width: 430px;
       height: 520px;
       position: absolute;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
       left: 50%;
       top: 50%;
     }
-    .background .shape{
+
+    .background .shape {
       height: 200px;
       width: 200px;
       position: absolute;
       border-radius: 50%;
     }
-    .shape:last-child{
-      background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-      );
+
+    .shape:last-child {
+      background: linear-gradient(to right, #ff512f, #f09819);
       right: -30px;
       bottom: -80px;
     }
-    form{
-      height: 520px;
+
+    form {
+      min-height: 520px; /* Minimum height for the form */
       width: 400px;
-      background-color: rgba(255,255,255,0.13);
+      background-color: rgba(255, 255, 255, 0.13);
       position: absolute;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
       top: 50%;
       left: 50%;
       border-radius: 10px;
       backdrop-filter: blur(10px);
-      border: 2px solid rgba(255,255,255,0.1);
-      box-shadow: 0 0 40px rgba(8,7,16,0.6);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
       padding: 50px 35px;
+      transition: min-height 0.3s ease-in-out; /* Smooth transition when height changes */
     }
-    form *{
-      font-family: 'Poppins',sans-serif;
+
+    form * {
+      font-family: 'Poppins', sans-serif;
       color: white;
       letter-spacing: 0.5px;
       outline: none;
       border: none;
     }
-    form h3{
+
+    form h3 {
       font-size: 32px;
       font-weight: 500;
       line-height: 42px;
@@ -76,28 +77,31 @@
       color: white;
     }
 
-    label{
+    label {
       display: block;
       margin-top: 30px;
       font-size: 16px;
       font-weight: 500;
       color: white;
     }
-    input{
+
+    input {
       display: block;
       height: 50px;
       width: 100%;
-      background-color: rgba(255,255,255,0.07);
+      background-color: rgba(255, 255, 255, 0.07);
       border-radius: 3px;
       padding: 0 10px;
       margin-top: 8px;
       font-size: 14px;
       font-weight: 300;
     }
-    ::placeholder{
+
+    ::placeholder {
       color: #e5e5e5;
     }
-    button{
+
+    button {
       margin-top: 50px;
       width: 100%;
       background-color: #ffffff;
@@ -108,24 +112,29 @@
       border-radius: 5px;
       cursor: pointer;
     }
-    .social div{
+
+    .social div {
       background: red;
       width: 150px;
       border-radius: 3px;
       padding: 5px 10px 10px 5px;
-      background-color: rgba(255,255,255,0.27);
+      background-color: rgba(255, 255, 255, 0.27);
       color: #eaf0fb;
       text-align: center;
     }
-    .social div:hover{
-      background-color: rgba(255,255,255,0.47);
+
+    .social div:hover {
+      background-color: rgba(255, 255, 255, 0.47);
     }
-    .social .fb{
+
+    .social .fb {
       margin-left: 25px;
     }
-    .social i{
+
+    .social i {
       margin-right: 4px;
     }
+
     .login-link {
       margin-top: 15px;
       text-align: center;
@@ -143,6 +152,13 @@
       text-decoration: underline;
     }
 
+    /* Error message styling */
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -150,6 +166,7 @@
   <div class="shape"></div>
   <div class="shape"></div>
 </div>
+
 <form #loginForm="ngForm" (ngSubmit)="onLogin()" novalidate>
   <h3>Giriş Yapın!</h3>
 
@@ -162,8 +179,8 @@
          id="email"
          required
          #emailInput="ngModel"
-         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" >
-  <div *ngIf="emailInput.invalid && emailInput.touched && emailInput.value" style="color: white;">
+         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+  <div *ngIf="emailInput.invalid && emailInput.touched && emailInput.value" class="error-message">
     Geçerli bir e-mail girin.
   </div>
 
@@ -177,14 +194,16 @@
          required
          #passwordInput="ngModel"
          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$">
-  <div *ngIf="passwordInput.invalid && passwordInput && passwordInput.value" style="color: white;">
-    Şifre en az 6 karakter olmalı, büyük harf, küçük harf, rakam ve özel karakter içermelidir.  </div>
+  <div *ngIf="passwordInput.invalid && passwordInput && passwordInput.value" class="error-message">
+    Şifre en az 6 karakter olmalı, büyük harf, küçük harf, rakam ve özel karakter içermelidir.
+  </div>
 
-  <div *ngIf="errorMessage" style="color: red; margin-top: 10px; text-align: center;">
+  <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
 
   <button type="submit" [disabled]="loginForm.invalid">Giriş Yap</button>
+
   <p class="login-link">
     Hesabınız yok mu? <a href="/register">Kayıt olun</a>
   </p>

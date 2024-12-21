@@ -34,6 +34,7 @@ export class RegisterComponent {
         console.log('Backend Yanıtı:', response);
         if(response.success){
           console.log('Kayıt Başarılı');
+          console.log(response.token);
           this.successMessage='Kayıt başarlıyla oluşturuldu! Giriş yapabilirsiniz.';
           this.name=''; //kayıt sonrası inputlar temizlensin
           this.surname='';

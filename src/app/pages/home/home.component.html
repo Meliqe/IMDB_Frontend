@@ -1,1 +1,30 @@
-<p>home works!</p>
+<div *ngIf="loading" class="loading">Filmler yükleniyor...</div>
+
+<div class="film-grid" *ngIf="!loading">
+  <div class="film-card" *ngFor="let film of films">
+    <!-- Poster ve Film Bilgileri -->
+    <div class="film-card-header">
+      <img [src]="film.posterPath" alt="{{ film.filmName }}" />
+    </div>
+    <div class="film-card-body">
+      <h3>{{ film.filmName }}</h3>
+      <p>{{ film.filmDescription }}</p>
+
+      <!-- Oyuncular -->
+      <div class="film-actors" *ngIf="film.actors && film.actors.length > 0">
+        <h4>Oyuncular:</h4>
+        <ul>
+          <li *ngFor="let actor of film.actors">{{ actor.actorName }}</li>
+        </ul>
+      </div>
+
+      <!-- Türler -->
+      <div class="film-genres" *ngIf="film.genres && film.genres.length > 0">
+        <h4>Türler:</h4>
+        <ul>
+          <li *ngFor="let genre of film.genres">{{ genre.genreName }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

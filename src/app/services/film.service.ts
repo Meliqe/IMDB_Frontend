@@ -6,10 +6,10 @@ import {HttpClient} from '@angular/common/http';
 })
 export class FilmService {
 
-  private apiUrl: string ="http://localhost:5286/api"
+  private apiUrl: string ="http://localhost:5286/api/film"
   constructor(private http: HttpClient) {}
 
   getAllFilms(){
-    return this.http.get(`${this.apiUrl}/films`); //post olsaydı 2 paramtere bekleyecekti
+    return this.http.get(`${this.apiUrl}/allfilms`); //post olsaydı 2 paramtere bekleyecekti
   }
 }

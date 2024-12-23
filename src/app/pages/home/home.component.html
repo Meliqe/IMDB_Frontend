@@ -1,30 +1,102 @@
-<div *ngIf="loading" class="loading">Filmler yükleniyor...</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>IMDb Clone</title>
+  <style>
+    /* Genel Stil Ayarları */
+    body {
+      margin: 0;
+      background-color: #121212; /* IMDb'nin koyu arka planı */
+      color: #ffffff; /* Beyaz metin rengi */
+      font-family: 'Roboto', Arial, sans-serif;
+    }
 
-<div class="film-grid" *ngIf="!loading">
-  <div class="film-card" *ngFor="let film of films">
-    <!-- Poster ve Film Bilgileri -->
-    <div class="film-card-header">
-      <img [src]="film.posterPath" alt="{{ film.filmName }}" />
-    </div>
-    <div class="film-card-body">
-      <h3>{{ film.filmName }}</h3>
-      <p>{{ film.filmDescription }}</p>
+    /* Navbar Stili */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 120px;
+      background-color: #121212; /* Daha koyu bir navbar arka planı */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      height: 30px;
+    }
 
-      <!-- Oyuncular -->
-      <div class="film-actors" *ngIf="film.actors && film.actors.length > 0">
-        <h4>Oyuncular:</h4>
-        <ul>
-          <li *ngFor="let actor of film.actors">{{ actor.actorName }}</li>
-        </ul>
-      </div>
+    .navbar a {
+      color: #ffffff; /* IMDb'nin sarı tonu */
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
 
-      <!-- Türler -->
-      <div class="film-genres" *ngIf="film.genres && film.genres.length > 0">
-        <h4>Türler:</h4>
-        <ul>
-          <li *ngFor="let genre of film.genres">{{ genre.genreName }}</li>
-        </ul>
-      </div>
-    </div>
+    .navbar a:hover {
+      color:#f89133; /* Linklerin üzerine gelince beyaz renk */
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center; /* Logoyu ortalamak için */
+      height: 100%; /* Navbar yüksekliğine göre hizala */
+    }
+
+    .navbar .logo img {
+      height: 50px; /* Logonun yüksekliği */
+      vertical-align: middle; /* Varsayılan kaymayı düzelt */
+    }
+    .search-bar {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      margin: 0 20px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      max-width: 650px;
+      padding: 10px 15px;
+      border-radius: 15px; /* Köşeleri kıvrımlı */
+      border: 2px solid #333;
+      background-color: #ffffff; /* Beyaz arka plan */
+      color: #000; /* Siyah metin */
+      outline: none;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    .search-bar input:focus {
+      border-color: #f89133; /* Turuncu çerçeve odakta */
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar a {
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="navbar">
+  <div class="logo">
+    <img src="./assets/LOGO.png" alt="CineRank Logo">
+  </div>
+  <div class="search-bar">
+    <input type="text" placeholder="Search movies..." />
+  </div>
+  <div class="links">
+    <a href="#">Home</a>
+    <a href="#">Movies</a>
+    <a href="#">Login/Register</a>
   </div>
 </div>
+</body>
+</html>

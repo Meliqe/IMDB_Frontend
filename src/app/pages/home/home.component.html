@@ -20,13 +20,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 120px;
-      background-color: #121212; /* Daha koyu bir navbar arka planı */
+      background-color: #121212;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       height: 30px;
     }
 
     .navbar a {
-      color: #ffffff; /* IMDb'nin sarı tonu */
+      color: #ffffff;
       text-decoration: none;
       margin: 0 15px;
       font-weight: bold;
@@ -34,19 +34,19 @@
     }
 
     .navbar a:hover {
-      color:#f89133; /* Linklerin üzerine gelince beyaz renk */
+      color: #f89133; /* Hover efekti */
     }
 
+    /* Logo ve Arama Çubuğu */
     .navbar .logo {
       display: flex;
-      align-items: center; /* Logoyu ortalamak için */
-      height: 100%; /* Navbar yüksekliğine göre hizala */
+      align-items: center;
     }
 
     .navbar .logo img {
-      height: 50px; /* Logonun yüksekliği */
-      vertical-align: middle; /* Varsayılan kaymayı düzelt */
+      height: 50px;
     }
+
     .search-bar {
       flex-grow: 1;
       display: flex;
@@ -58,21 +58,97 @@
       width: 100%;
       max-width: 650px;
       padding: 10px 15px;
-      border-radius: 15px; /* Köşeleri kıvrımlı */
+      border-radius: 15px;
       border: 2px solid #333;
-      background-color: #ffffff; /* Beyaz arka plan */
-      color: #000; /* Siyah metin */
+      background-color: #ffffff;
+      color: #000;
       outline: none;
       font-size: 16px;
       transition: border-color 0.3s ease;
     }
 
     .search-bar input:focus {
-      border-color: #f89133; /* Turuncu çerçeve odakta */
+      border-color: #f89133;
     }
 
-    /* Responsive Navbar */
+    /* Categories Başlık ve Kutu Düzeni */
+    .categories {
+      padding: 5px  20px;
+    }
+
+    /* Kategoriler Başlığı */
+    .title {
+      text-align: left; /* Başlığı sola hizalar */
+      margin-top: 100px; /* Navbar ile başlık arasındaki boşluk */
+      margin-left: 95px; /* Navbar'a yakın olmaması için sola kaydırma */
+      margin-bottom: 1px;
+    }
+
+    .title h1 {
+      font-size: 28px;
+      color: #ffffff;
+    }
+
+
+    /* Kategoriler için Kartlar */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 kutu yan yana */
+      gap: 20px;
+      margin-left: 70px;
+      margin-right: 70px;
+    }
+
+    .categories-1 {
+      height: 150px;
+      width: 300px;
+      background-color: #1e1e1e;
+      border: 2px solid #333;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .categories-1:hover {
+      transform: scale(1.05); /* Hover etkisi ile büyütme */
+    }
+
+    .categories-1 h1 {
+      font-size: 18px;
+      color: #ffffff;
+    }
+    /* Daha Fazlasını Gör Butonu */
+    .more-btn {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .more-btn button {
+      padding: 10px 20px;
+      background-color: #f89133;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .more-btn button:hover {
+      background-color: #d6762e;
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
+      .categories {
+        grid-template-columns: repeat(2, 1fr); /* Küçük ekranlarda 2 kutu yan yana */
+      }
+
       .navbar {
         flex-direction: column;
         align-items: flex-start;
@@ -85,7 +161,7 @@
   </style>
 </head>
 <body>
-<div class="navbar">
+<nav class="navbar">
   <div class="logo">
     <img src="./assets/LOGO.png" alt="CineRank Logo">
   </div>
@@ -93,10 +169,28 @@
     <input type="text" placeholder="Search movies..." />
   </div>
   <div class="links">
-    <a href="#">Home</a>
+    <a href="/">Home</a>
     <a href="#">Movies</a>
-    <a href="#">Login/Register</a>
+    <a href="/login">Login/Register</a>
+  </div>
+</nav>
+<div class="title"><h1>Categories</h1></div>
+<div class="categories">
+  <div
+    class="categories-1"
+    *ngFor="let genre of genresToShow"
+  >
+    <h1>{{ genre }}</h1>
   </div>
 </div>
+
+<!-- Sağ alt köşede "Daha Fazlası" -->
+<div class="more-btn" *ngIf="genres.length > 8">
+  <button (click)="showAllGenres()">
+    Daha Fazlası <span>&#8594;</span> <!-- Sağ ok ikonu -->
+  </button>
+</div>
+
+
 </body>
 </html>

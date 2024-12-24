@@ -12,4 +12,7 @@ export class FilmService {
   getAllFilms(){
     return this.http.get(`${this.apiUrl}/allfilms`); //post olsaydı 2 paramtere bekleyecekti
   }
+  getAllGenres(){
+    return this.http.get(`${this.apiUrl}/allgenres`);
+  }
 }

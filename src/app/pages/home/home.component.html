@@ -5,160 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <title>IMDb Clone</title>
-  <style>
-    /* Genel Stil Ayarları */
-    body {
-      margin: 0;
-      background-color: #121212; /* IMDb'nin koyu arka planı */
-      color: #ffffff; /* Beyaz metin rengi */
-      font-family: 'Roboto', Arial, sans-serif;
-    }
 
-    /* Navbar Stili */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 120px;
-      background-color: #121212;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-      height: 30px;
-    }
-
-    .navbar a {
-      color: #ffffff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    .navbar a:hover {
-      color: #f89133; /* Hover efekti */
-    }
-
-    /* Logo ve Arama Çubuğu */
-    .navbar .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .navbar .logo img {
-      height: 50px;
-    }
-
-    .search-bar {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      margin: 0 20px;
-    }
-
-    .search-bar input {
-      width: 100%;
-      max-width: 650px;
-      padding: 10px 15px;
-      border-radius: 15px;
-      border: 2px solid #333;
-      background-color: #ffffff;
-      color: #000;
-      outline: none;
-      font-size: 16px;
-      transition: border-color 0.3s ease;
-    }
-
-    .search-bar input:focus {
-      border-color: #f89133;
-    }
-
-    /* Categories Başlık ve Kutu Düzeni */
-    .categories {
-      padding: 5px  20px;
-    }
-
-    /* Kategoriler Başlığı */
-    .title {
-      text-align: left; /* Başlığı sola hizalar */
-      margin-top: 100px; /* Navbar ile başlık arasındaki boşluk */
-      margin-left: 95px; /* Navbar'a yakın olmaması için sola kaydırma */
-      margin-bottom: 1px;
-    }
-
-    .title h1 {
-      font-size: 28px;
-      color: #ffffff;
-    }
-
-
-    /* Kategoriler için Kartlar */
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr); /* 4 kutu yan yana */
-      gap: 20px;
-      margin-left: 70px;
-      margin-right: 70px;
-    }
-
-    .categories-1 {
-      height: 150px;
-      width: 300px;
-      background-color: #1e1e1e;
-      border: 2px solid #333;
-      border-radius: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .categories-1:hover {
-      transform: scale(1.05); /* Hover etkisi ile büyütme */
-    }
-
-    .categories-1 h1 {
-      font-size: 18px;
-      color: #ffffff;
-    }
-    /* Daha Fazlasını Gör Butonu */
-    .more-btn {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .more-btn button {
-      padding: 10px 20px;
-      background-color: #f89133;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-    }
-
-    .more-btn button:hover {
-      background-color: #d6762e;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .categories {
-        grid-template-columns: repeat(2, 1fr); /* Küçük ekranlarda 2 kutu yan yana */
-      }
-
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .navbar a {
-        margin: 5px 0;
-      }
-    }
-  </style>
 </head>
 <body>
 <nav class="navbar">
@@ -174,23 +21,99 @@
     <a href="/login">Login/Register</a>
   </div>
 </nav>
-<div class="title"><h1>Categories</h1></div>
+<div class="title"><h1>Kategoriler</h1></div>
 <div class="categories">
-  <div
-    class="categories-1"
-    *ngFor="let genre of genresToShow"
-  >
-    <h1>{{ genre }}</h1>
+  <div class="container">
+    <!-- Sol ok -->
+    <div class="arrow left-arrow" (click)="onLeftArrowClick()">←</div>
+    <!-- Kategoriler -->
+    <div class="categories-wrapper">
+      <div
+        class="categories-1"
+        *ngFor="let genre of genresToShow"
+        (click)="onCategoryClick(genre)"
+      >
+        <h1>{{ genre }}</h1>
+      </div>
+    </div>
+    <!-- Sağ ok -->
+    <div class="arrow right-arrow" (click)="onRightArrowClick()">→</div>
   </div>
 </div>
 
-<!-- Sağ alt köşede "Daha Fazlası" -->
-<div class="more-btn" *ngIf="genres.length > 8">
-  <button (click)="showAllGenres()">
-    Daha Fazlası <span>&#8594;</span> <!-- Sağ ok ikonu -->
-  </button>
+<div class="title"><h1>Filmler</h1></div>
+<div class="film-container">
+  <div class="film-wrapper">
+    <div *ngFor="let film of filmsToShow"  class="kart">
+      <img src="./assets/Schindler's_List.jpeg" alt="Yellowstone Poster">
+      <div class="metin">
+        <div class="rating-summary">
+          <span class="star-icon">★</span>
+          <span id="average-rating">0.0</span>
+          <div class="rating">
+            <span class="star-outline" data-value="1">☆</span>
+            <span class="star-outline" data-value="2">☆</span>
+            <span class="star-outline" data-value="3">☆</span>
+            <span class="star-outline" data-value="4">☆</span>
+            <span class="star-outline" data-value="5">☆</span>
+          </div>
+        </div>
+        <h2>{{ film.filmName }}</h2>
+        <a href="#">+ Watchlist</a>
+        <b href="#">► Trailer</b>
+           </div>
+    </div>
+  </div>
 </div>
-
-
+<div class="title"><h1>Filmler</h1></div>
+<div class="film-container">
+  <div class="film-wrapper">
+    <div *ngFor="let film of filmsToShow"  class="kart">
+      <img src="./assets/Schindler's_List.jpeg" alt="Yellowstone Poster">
+      <div class="metin">
+        <div class="rating-summary">
+          <span class="star-icon">★</span>
+          <span id="average-rating">0.0</span>
+          <div class="rating">
+            <span class="star-outline" data-value="1">☆</span>
+            <span class="star-outline" data-value="2">☆</span>
+            <span class="star-outline" data-value="3">☆</span>
+            <span class="star-outline" data-value="4">☆</span>
+            <span class="star-outline" data-value="5">☆</span>
+          </div>
+        </div>
+        <h2>{{ film.filmName }}</h2>
+        <a href="#">+ Watchlist</a>
+        <b href="#">► Trailer</b>
+           </div>
+    </div>
+  </div>
+</div>
+<div class="title"><h1>Filmler</h1></div>
+<div class="film-container">
+  <button class="scroll-btn left-btn" (click)="ScrollLeft()">&#8249;</button>
+  <div class="film-wrapper">
+    <div *ngFor="let film of filmsToShow"  class="kart">
+      <img src="./assets/Schindler's_List.jpeg" alt="{{film.filmName}}">
+      <div class="metin">
+        <div class="rating-summary">
+          <span class="star-icon">★</span>
+          <span id="average-rating">0.0</span>
+          <div class="rating">
+            <span class="star-outline" data-value="1">☆</span>
+            <span class="star-outline" data-value="2">☆</span>
+            <span class="star-outline" data-value="3">☆</span>
+            <span class="star-outline" data-value="4">☆</span>
+            <span class="star-outline" data-value="5">☆</span>
+          </div>
+        </div>
+        <h2>{{film.filmName}}</h2>
+        <a href="#">+ Watchlist</a>
+        <b href="#">► Trailer</b>
+           </div>
+    </div>
+  </div>
+  <button class="scroll-btn right-btn" (click)="ScrollRight()">&#8250;</button>
+</div>
 </body>
 </html>

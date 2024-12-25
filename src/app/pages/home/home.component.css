@@ -1,0 +1,360 @@
+/* Genel Stil Ayarları */
+body {
+  margin: 0;
+  background-color: black; /* IMDb'nin koyu arka planı */
+  color: #ffffff; /* Beyaz metin rengi */
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Navbar Stili */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 120px;
+  background-color: #121212;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  height: 30px;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #f89133; /* Hover efekti */
+}
+
+/* Logo ve Arama Çubuğu */
+.navbar .logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo img {
+  height: 50px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 650px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: 2px solid #333;
+  background-color: #ffffff;
+  color: #000;
+  outline: none;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.search-bar input:focus {
+  border-color: #f89133;
+}
+
+/* Kategoriler Başlığı */
+.title {
+  text-align: left; /* Başlığı sola hizalar */
+  padding: 0px 170px 0px;
+  margin-top: 50px;
+}
+
+.title h1 {
+  font-size: 33px;
+  color: #f89133;
+}
+
+/* Categories Başlık ve Kutu Düzeni */
+.categories {
+  padding: 30px 20px;
+}
+
+.categories-1 {
+  height: 150px; /* Mevcut boyut korunur */
+  width: 250px; /* Mevcut boyut korunur */
+  background: linear-gradient(145deg, #1e1e1e, #2a2a2a); /* Mevcut gradient korunur */
+  border: none; /* Mevcut border kaldırılmış hali korunur */
+  border-radius: 20px; /* Mevcut yuvarlak köşeler korunur */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); /* Mevcut gölge korunur */
+  cursor: pointer; /* Tıklanabilirlik için işaretçi imleci */
+  color: white; /* Yazı rengi sabit kalır */
+  font-family: 'Roboto', sans-serif; /* Yazı tipi korunur */
+  font-size: 18px; /* Yazı boyutu korunur */
+  transition: background-color 1s ease, transform 1s ease, box-shadow 1s ease; /* Daha yavaş geçiş süresi */
+}
+
+/* Hover (Üzerine gelince) efekti */
+.categories-1:hover {
+  background:  #f89133;/* Hafif renk geçişi (gradient aynı tonlarda) */
+  transform: scale(1.02); /* Hafif büyüme efekti (abartısız) */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Gölge biraz artırılır */
+}
+
+/* Tıklama (Active) efekti */
+.categories-1:active {
+  transform: scale(0.98); /* Tıklanınca hafifçe küçülme efekti */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Gölge azaltılır */
+}
+
+.categories-1 h1 {
+  font-size: 20px; /* Daha büyük yazı boyutu */
+  color: #f1f1f1; /* Hafif gri yazı rengi */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Yazıya hafif bir gölge efekti */
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px;
+}
+
+.arrow {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.arrow:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.categories-wrapper {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+.text h1, h5{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  font-weight: bold;
+  color: transparent;
+  -webkit-text-stroke: 3px #0d1423;
+  margin: 20px;
+}
+.text h1:hover, h5:hover{
+  -webkit-text-stroke: 3px #e062ff;
+}
+
+
+
+@media (max-width: 768px) {
+  .film-grid {
+    grid-template-columns: 1fr; /* Küçük ekranlarda tek kolon */
+  }
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr); /* Küçük ekranlarda 2 kutu yan yana */
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar a {
+    margin: 5px 0;
+  }
+}
+.film-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px;
+  width: 80%; /* Genişliği sayfanın %80'i ile sınırla */
+  max-width: 1200px; /* Maksimum genişliği sınırla */
+  margin: 0 auto; /* Ortalamak için */
+}
+.kart {
+  width: 250px;
+  padding: 0;
+  border-radius: 10px;
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  overflow: hidden;
+  text-align: center;
+  flex: 1 1 calc(16.66% - 20px); /* 6 kartın sığması için yüzde tabanlı genişlik */
+  max-width: calc(16.66% - 20px); /* En fazla bir satırda 6 kart */
+  box-sizing: border-box; /* Padding dahil genişlik hesaplaması */
+}
+.film-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Kartlar arasında boşluk */
+  justify-content: center; /* Ortalamak için */
+  padding: 20px; /* Kenarlardan uzaklaştırmak için */
+  max-width: 1200px; /* Satırda kaç tane olacağını kontrol etmek için genişlik sınırlaması */
+  margin: 0 auto; /* Ortalamak için */
+}
+
+.kart img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.metin {
+  background-color: #292929;
+  padding: 10px;
+  text-align: left;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.rating-summary {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  color: #FFD700;
+  margin-bottom: 10px;
+}
+
+.rating-summary .star-icon {
+  font-size: 18px;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.rating-summary #average-rating {
+  color: #fff;
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.rating {
+  display:absolute;
+  gap: 2px;
+}
+
+.star-outline {
+  font-size: 16px;
+  color: #ADD8E6;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.star-outline:hover,
+.star-outline.active {
+  color: #FFD700;
+}
+
+.metin h2 {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 10px 0;
+  color: #fff;
+}
+
+.kart a {
+  display: block;
+  font-weight: bold;
+  color: #1C86EE;
+  background-color: #4e4e4e;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 8px 0;
+  border: 1px solid #c0c0c0;
+  border-radius: 30px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.kart a:hover {
+  background-color: #089bff;
+  color: #fff;
+}
+
+.kart b {
+  display: block;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 8px 0;
+  background-color: transparent;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.kart b:hover {
+  background-color: #777;
+    color: #fff;
+}
+@media (max-width: 1024px) {
+  .kart {
+    flex: 1 1 calc(33.33% - 20px); /* Orta ekranlarda 3 kart */
+    max-width: calc(33.33% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .kart {
+    flex: 1 1 calc(50% - 20px); /* Küçük ekranlarda 2 kart */
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .kart {
+    flex: 1 1 100%; /* Çok küçük ekranlarda 1 kart */
+    max-width: 100%;
+  }
+}
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 70px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.left-btn {
+  left: 0px;
+}
+
+.right-btn {
+  right: 0px;
+}
+

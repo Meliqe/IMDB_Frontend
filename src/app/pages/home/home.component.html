@@ -22,77 +22,78 @@
   </div>
 </nav>
 <div class="title"><h1>Kategoriler</h1></div>
-<div class="categories">
-  <div class="container">
-    <!-- Sol ok -->
-    <div class="arrow left-arrow" (click)="onLeftArrowClick()">←</div>
-    <!-- Kategoriler -->
-    <div class="categories-wrapper">
-      <div
-        class="categories-1"
-        *ngFor="let genre of genresToShow"
-        (click)="onCategoryClick(genre)"
-      >
-        <h1>{{ genre }}</h1>
+<div class=wrapper>
+  <div class="film-strip-container">
+    <button class="btn left-btn" (click)="onLeftArrowClick()">&#8249;</button>
+    <div class="film-strip">
+      <div class="film-holes top-holes"></div>
+      <div class="film-content" >
+        <div class="film-frame" *ngFor="let genre of genresToShow"
+             (click)="onCategoryClick(genre)" >{{ genre }}</div>
       </div>
+      <div class="film-holes bottom-holes"></div>
     </div>
-    <!-- Sağ ok -->
-    <div class="arrow right-arrow" (click)="onRightArrowClick()">→</div>
+    <button class="btn right-btn" (click)="onRightArrowClick()">&#8250;</button>
   </div>
 </div>
 
+
 <div class="title"><h1>Filmler</h1></div>
 <div class="film-container">
-  <div class="film-wrapper">
-    <div *ngFor="let film of filmsToShow"  class="kart">
-      <img src="{{film.posterPath}}" alt="Yellowstone Poster">
-      <div class="metin">
-        <div class="rating-summary">
-          <span class="star-icon">★</span>
-          <span id="average-rating">0.0</span>
-          <div class="rating">
-            <span class="star-outline" data-value="1">☆</span>
-            <span class="star-outline" data-value="2">☆</span>
-            <span class="star-outline" data-value="3">☆</span>
-            <span class="star-outline" data-value="4">☆</span>
-            <span class="star-outline" data-value="5">☆</span>
-          </div>
-        </div>
-        <h2>{{ film.filmName }}</h2>
-        <a href="#">+ Watchlist</a>
-        <b href="#">► Trailer</b>
-           </div>
-    </div>
-  </div>
-</div>
-<div class="title"><h1>Filmler</h1></div>
-<div class="film-container">
-  <div class="film-wrapper">
-    <div *ngFor="let film of filmsToShow"  class="kart">
-      <img src="{{film.posterPath}}" alt="Yellowstone Poster">
-      <div class="metin">
-        <div class="rating-summary">
-          <span class="star-icon">★</span>
-          <span id="average-rating">0.0</span>
-          <div class="rating">
-            <span class="star-outline" data-value="1">☆</span>
-            <span class="star-outline" data-value="2">☆</span>
-            <span class="star-outline" data-value="3">☆</span>
-            <span class="star-outline" data-value="4">☆</span>
-            <span class="star-outline" data-value="5">☆</span>
-          </div>
-        </div>
-        <h2>{{ film.filmName }}</h2>
-        <a href="#">+ Watchlist</a>
-        <b href="#">► Trailer</b>
-           </div>
-    </div>
-  </div>
-</div>
-<div class="title"><h1>Filmler</h1></div>
-<div class="film-container" >
   <button class="scroll-btn left-btn" (click)="ScrollLeft()">&#8249;</button>
-  <div class="film-wrapper" >
+  <div class="film-wrapper">
+    <div *ngFor="let film of filmsToShow"  class="kart">
+      <img src="{{film.posterPath}}" alt="Yellowstone Poster">
+      <div class="metin">
+        <div class="rating-summary">
+          <span class="star-icon">★</span>
+          <span id="average-rating">0.0</span>
+          <div class="rating">
+            <span class="star-outline" data-value="1">☆</span>
+            <span class="star-outline" data-value="2">☆</span>
+            <span class="star-outline" data-value="3">☆</span>
+            <span class="star-outline" data-value="4">☆</span>
+            <span class="star-outline" data-value="5">☆</span>
+          </div>
+        </div>
+        <h2>{{ film.filmName }}</h2>
+        <a href="#">+ Watchlist</a>
+        <b href="#">► Trailer</b>
+           </div>
+    </div>
+  </div>
+  <button class="scroll-btn right-btn" (click)="ScrollRight()">&#8250;</button>
+</div>
+<div class="title"><h1>Filmler</h1></div>
+<div class="film-container">
+  <button class="scroll-btn left-btn" (click)="ScrollLeft()">&#8249;</button>
+  <div class="film-wrapper">
+    <div *ngFor="let film of filmsToShow"  class="kart">
+      <img src="{{film.posterPath}}" alt="Yellowstone Poster">
+      <div class="metin">
+        <div class="rating-summary">
+          <span class="star-icon">★</span>
+          <span id="average-rating">0.0</span>
+          <div class="rating">
+            <span class="star-outline" data-value="1">☆</span>
+            <span class="star-outline" data-value="2">☆</span>
+            <span class="star-outline" data-value="3">☆</span>
+            <span class="star-outline" data-value="4">☆</span>
+            <span class="star-outline" data-value="5">☆</span>
+          </div>
+        </div>
+        <h2>{{ film.filmName }}</h2>
+        <a href="#">+ Watchlist</a>
+        <b href="#">► Trailer</b>
+           </div>
+    </div>
+  </div>
+  <button class="scroll-btn right-btn" (click)="ScrollRight()">&#8250;</button>
+</div>
+<div class="title"><h1>Filmler</h1></div>
+<div class="film-container">
+  <button class="scroll-btn left-btn" (click)="ScrollLeft()">&#8249;</button>
+  <div class="film-wrapper">
     <div *ngFor="let film of filmsToShow"  class="kart">
       <img src="{{film.posterPath}}" alt="{{film.filmName}}">
       <div class="metin">

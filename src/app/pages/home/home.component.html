@@ -45,7 +45,7 @@
 <div class="film-container">
   <div class="film-wrapper">
     <div *ngFor="let film of filmsToShow"  class="kart">
-      <img src="./assets/Schindler's_List.jpeg" alt="Yellowstone Poster">
+      <img src="{{film.posterPath}}" alt="Yellowstone Poster">
       <div class="metin">
         <div class="rating-summary">
           <span class="star-icon">★</span>
@@ -69,7 +69,7 @@
 <div class="film-container">
   <div class="film-wrapper">
     <div *ngFor="let film of filmsToShow"  class="kart">
-      <img src="./assets/Schindler's_List.jpeg" alt="Yellowstone Poster">
+      <img src="{{film.posterPath}}" alt="Yellowstone Poster">
       <div class="metin">
         <div class="rating-summary">
           <span class="star-icon">★</span>
@@ -90,11 +90,11 @@
   </div>
 </div>
 <div class="title"><h1>Filmler</h1></div>
-<div class="film-container">
+<div class="film-container" >
   <button class="scroll-btn left-btn" (click)="ScrollLeft()">&#8249;</button>
-  <div class="film-wrapper">
+  <div class="film-wrapper" >
     <div *ngFor="let film of filmsToShow"  class="kart">
-      <img src="./assets/Schindler's_List.jpeg" alt="{{film.filmName}}">
+      <img src="{{film.posterPath}}" alt="{{film.filmName}}">
       <div class="metin">
         <div class="rating-summary">
           <span class="star-icon">★</span>
@@ -115,5 +115,6 @@
   </div>
   <button class="scroll-btn right-btn" (click)="ScrollRight()">&#8250;</button>
 </div>
+
 </body>
 </html>

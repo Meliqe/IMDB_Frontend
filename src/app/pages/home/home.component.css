@@ -357,4 +357,106 @@ body {
 .right-btn {
   right: 0px;
 }
+.film-strip-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between; /* Butonları dışa hizalar */
+  width: 90%;
+  max-width: 790px; /* Film şeridi genişliği */
+  overflow: hidden;
+}
 
+.film-strip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: black;
+  border-radius: 10px;
+  border: 5px solid black;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+/* Üst ve alt şerit delikleri */
+.film-holes {
+  position: relative;
+  display: flex;
+  background-color: #a95e13;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 5px 0;
+  height: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    black 0px,
+    black 5px,
+    white 5px,
+    white 10px
+  );
+}
+
+.top-holes {
+  top: -10px;
+  position: absolute;
+  width: 100%;
+}
+
+.bottom-holes {
+  bottom: -10px;
+  position: absolute;
+  width: 100%;
+}
+
+/* Film içerikleri */
+.film-content {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: max-content; /* İçeriğin genişliği otomatik ayarlanır */
+}
+
+.film-frame {
+  flex: 0 0 140px; /* Her film karesinin sabit genişliği */
+  margin: 5px;
+  height: 100px;
+  background-color: #fff;
+  border: 3px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease; /* Geçiş animasyonu */
+  cursor: pointer; /* Tıklanabilir işaretçi */
+}
+
+/* Hover efekti (Kategori üzerine gelindiğinde) */
+.film-frame:hover {
+  opacity: 0.85; /* Hafif saydamlık efekti */
+  transform: scale(1.05); /* Büyütme efekti */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Daha belirgin gölge */
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 70px;
+  cursor: pointer;
+  z-index: 10;
+}
+.left-btn {
+  left: 0px;
+}
+.right-btn {
+  right: 0px;
+}

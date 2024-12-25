@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
   loading: boolean = true;
   genresToShow: string[] = [];
   filmsToShow: any[] = [];
+  posterPathPrefix: string = 'data:image/jpeg;base64,';
+
   constructor(private filmService: FilmService) {}
 
   ngOnInit(): void {
@@ -26,6 +28,11 @@ export class HomeComponent implements OnInit {
     this.filmService.getAllFilms().subscribe(
       (data) => {
         this.films = data;
+        this.films.forEach((film: any) => {
+          if (film.posterPath) {
+            film.posterPath = `${this.posterPathPrefix}${film.posterPath}`;
+          }
+        });
         console.log(this.films);
         this.filmsToShow=this.films.slice(0,6);
         console.log('Gösterilen Filmler:', this.filmsToShow); // Gösterilen filmleri kontrol edin
@@ -52,20 +59,32 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  ScrollRight(){
-    const currentLastFilm = this.filmsToShow[this.filmsToShow.length - 5];
-    const currentFilms = [...this.filmsToShow];
-    currentFilms.shift(); // İlk kategoriyi çıkar
-    currentFilms.push(this.films[this.films.indexOf(currentLastFilm) + 5] || this.films[0]);
-    this.filmsToShow = [...currentFilms];
+  ScrollRight() {
+    // `this.filmsToShow` listesinin son filminden sonraki filmi al
+    const lastFilmIndex = this.films.indexOf(this.filmsToShow[this.filmsToShow.length - 1]);
+
+    // Sonraki filmleri al ve ekle, eğer sona ulaşıldıysa başa dön
+    const nextFilmIndex = (lastFilmIndex + 1) % this.films.length; // Modulus ile döngü sağlanır
+    const nextFilm = this.films[nextFilmIndex];
+
+    // İlk filmi çıkar ve yeni filmi ekle
+    this.filmsToShow.shift();
+    this.filmsToShow.push(nextFilm);
   }
-  ScrollLeft(){
-    const currentFirstFilm = this.filmsToShow[0];
-    const currentFilms = [...this.filmsToShow];
-    currentFilms.pop();
-    currentFilms.unshift(this.films[this.films.indexOf(currentFirstFilm) - 5] || this.films[this.films.length - 5]);
-    this.filmsToShow =[...currentFilms];
+
+  ScrollLeft() {
+    // `this.filmsToShow` listesinin ilk filminden önceki filmi al
+    const firstFilmIndex = this.films.indexOf(this.filmsToShow[0]);
+
+    // Önceki filmleri al ve ekle, eğer başa ulaşıldıysa sona dön
+    const prevFilmIndex = (firstFilmIndex - 1 + this.films.length) % this.films.length; // Modulus ile negatif index'ler önlenir
+    const prevFilm = this.films[prevFilmIndex];
+
+    // Son filmi çıkar ve yeni filmi başa ekle
+    this.filmsToShow.pop();
+    this.filmsToShow.unshift(prevFilm);
   }
+
 
   onLeftArrowClick() {
     const currentFirstGenre = this.genresToShow[0];

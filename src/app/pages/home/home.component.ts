@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     this.filmService.getAllGenres().subscribe(
       (data: any) => {
         this.genres = data.map((genre: any) => genre.genreName);
-        this.genresToShow = this.genres.slice(0, 5);
+        this.genresToShow = this.genres.slice(0, 9);
         this.loading = false;
       },
       (error) => {
@@ -58,6 +58,9 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+
+
 
   ScrollRight() {
     // `this.filmsToShow` listesinin son filminden sonraki filmi al
@@ -106,4 +109,5 @@ export class HomeComponent implements OnInit {
   onCategoryClick(genre: string): void {
     console.log('Selected Category:', genre);
   }
+
 }

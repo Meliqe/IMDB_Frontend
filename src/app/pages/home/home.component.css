@@ -220,7 +220,7 @@ body {
 
 .kart img {
   width: 100%;
-  height: auto;
+  height: 275px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -231,6 +231,7 @@ body {
   text-align: left;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  height: 180px;
 }
 
 .rating-summary {
@@ -357,122 +358,6 @@ body {
 .right-btn {
   right: 0px;
 }
-.film-strip-container {
-  display: flex;
-  align-items: center;
-  position: relative;
-  justify-content: space-between; /* Butonları dışa hizalar */
-  width: 90%;
-  max-width: 790px; /* Film şeridi genişliği */
-  overflow: hidden;
-}
-
-.film-strip {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background-color: black;
-  border-radius: 10px;
-  border: 5px solid black;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-}
-
-/* Üst ve alt şerit delikleri */
-.film-holes {
-  position: relative;
-  display: flex;
-  background-color: #a95e13;
-  justify-content: space-evenly;
-  width: 100%;
-  margin: 5px 0;
-  height: 10px;
-  background: repeating-linear-gradient(
-    90deg,
-    black 0px,
-    black 5px,
-    white 5px,
-    white 10px
-  );
-}
-
-.top-holes {
-  top: -10px;
-  position: absolute;
-  width: 100%;
-}
-
-.bottom-holes {
-  bottom: -10px;
-  position: absolute;
-  width: 100%;
-}
-
-/* Film içerikleri */
-.film-content {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: max-content; /* İçeriğin genişliği otomatik ayarlanır */
-}
-
-.film-frame {
-  flex: 0 0 140px; /* Her film karesinin sabit genişliği */
-  margin: 5px;
-  height: 100px;
-  background-color: #fff;
-  border: 3px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  font-weight: bold;
-  color: black;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease; /* Geçiş animasyonu */
-  cursor: pointer; /* Tıklanabilir işaretçi */
-}
-
-/* Hover efekti (Kategori üzerine gelindiğinde) */
-.film-frame:hover {
-  opacity: 0.85; /* Hafif saydamlık efekti */
-  transform: scale(1.05); /* Büyütme efekti */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Daha belirgin gölge */
-}
-
-.scroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 70px;
-  cursor: pointer;
-  z-index: 10;
-}
-.left-btn {
-  left: 0px;
-}
-.right-btn {
-  right: 0px;
-}
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  transform-origin: center;
-  margin-top: 50px; /* Yukarı boşluk */
-  margin-bottom: 50px;
-  position: relative;
-  overflow: hidden; /* Taşmaları engeller */
-}
-
 
 .film-strip-container {
   display: flex;
@@ -575,15 +460,153 @@ body {
   cursor: pointer;
   z-index: 10;
 }
-
-.left-btn {
-  left: -13px;
+.actor-container {
+  margin: 5px 0;
+  width: 200px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
 }
 
-.right-btn {
-  right: -13px;
+.image-section {
+  flex: 7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
 }
 
-.scroll-btn:hover {
-  background-color: gray;
+.profile-image {
+  width: 80%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-section {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #e0e0e0;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+
+
+
+
+
+/* Ana bölüm */
+.top {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.columns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.column {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* Görsel */
+.featured_wrapper {
+  position: relative;
+  height: 80%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.featured {
+  width: 70%;
+  height: 100%;
+}
+
+/* Başlık ve metin */
+.title_wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  display: flex;
+  flex-direction: column; /* Alt alta düzen */
+  align-items: center;
+}
+
+.title_wrapper span {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.title_wrapper h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.title_wrapper img{
+  width: 190px;
+  height: 300px;
+}
+
+/* Ana kapsayıcı: Görselleri yan yana sıralar */
+.actors-container {
+  display: flex; /* Flexbox düzeni */
+  flex-wrap: wrap; /* Elemanların taşması durumunda bir alt satıra geçmesine izin verir */
+  justify-content: center; /* Elemanları yatayda ortalar */
+  gap: 30px; /* Elemanlar arası boşluk */
+  margin: 20px auto; /* Genel üst-alt boşluk */
+}
+
+/* Bireysel elemanlar (görsel + başlık) */
+.actor-wrapper {
+  display: flex;
+  flex-direction: column; /* Görsel ve başlık alt alta */
+  align-items: center; /* Yatayda ortala */
+  text-align: center; /* Metni ortala */
+}
+
+/* Görsel stili */
+.image-wrapper-img {
+  width: 250px; /* Görsel genişliği */
+  height: 250px; /* Görsel yüksekliği */
+  border-radius: 50%; /* Yuvarlak görsel */
+  object-fit: cover; /* Görsel oranlarını koru */
+  object-position: center; /* Görüntüyü ortala */
+  margin-bottom: 10px; /* Görsel ve başlık arası boşluk */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+}
+
+/* Başlık stili */
+.image-wrapper-h3 {
+  font-size: 1rem; /* Başlık boyutu */
+  font-weight: bold; /* Kalın yazı tipi */
+  color: white; /* Metin rengi */
+  margin: 0; /* Varsayılan boşlukları kaldır */
 }

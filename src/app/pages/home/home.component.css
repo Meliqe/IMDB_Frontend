@@ -574,39 +574,70 @@ body {
   width: 190px;
   height: 300px;
 }
-
-/* Ana kapsayıcı: Görselleri yan yana sıralar */
-.actors-container {
-  display: flex; /* Flexbox düzeni */
-  flex-wrap: wrap; /* Elemanların taşması durumunda bir alt satıra geçmesine izin verir */
-  justify-content: center; /* Elemanları yatayda ortalar */
-  gap: 30px; /* Elemanlar arası boşluk */
-  margin: 20px auto; /* Genel üst-alt boşluk */
-}
-
-/* Bireysel elemanlar (görsel + başlık) */
-.actor-wrapper {
+/* Genel aktör slider kapsayıcı */
+.actors-slider {
   display: flex;
-  flex-direction: column; /* Görsel ve başlık alt alta */
-  align-items: center; /* Yatayda ortala */
-  text-align: center; /* Metni ortala */
+  align-items: center; /* Okları ve aktörleri hizalar */
+  justify-content: center;
+  margin: 20px auto;
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* Taşan içerikleri gizler */
 }
 
-/* Görsel stili */
+/* Aktörler konteyneri */
+.actors-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: start;
+  overflow: hidden; /* Kaydırma için taşan elemanları gizler */
+  width: 80%;
+  gap: 50px;
+}
+
+
+/* Her bir aktör */
+.actor-wrapper {
+  width: calc(100% / 5); /* Her bir aktör için eşit genişlik */
+  text-align: center;
+}
+
+/* Görseller */
 .image-wrapper-img {
-  width: 250px; /* Görsel genişliği */
-  height: 250px; /* Görsel yüksekliği */
-  border-radius: 50%; /* Yuvarlak görsel */
-  object-fit: cover; /* Görsel oranlarını koru */
-  object-position: center; /* Görüntüyü ortala */
-  margin-bottom: 10px; /* Görsel ve başlık arası boşluk */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  margin: 0 auto;
 }
 
-/* Başlık stili */
+/* Başlıklar */
 .image-wrapper-h3 {
-  font-size: 1rem; /* Başlık boyutu */
-  font-weight: bold; /* Kalın yazı tipi */
-  color: white; /* Metin rengi */
-  margin: 0; /* Varsayılan boşlukları kaldır */
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 10px;
 }
+
+/* Ok butonları */
+.arrow {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  padding: 0 10px;
+  z-index: 2;
+}
+
+.arrow.left {
+  position: absolute;
+  left: 10px;
+}
+
+.arrow.right {
+  position: absolute;
+  right: 10px;
+}
+

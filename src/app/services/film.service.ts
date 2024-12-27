@@ -16,4 +16,10 @@ export class FilmService {
   getAllGenres():Observable<Object> {
     return this.http.get(`${this.apiUrl}/allgenres`);
   }
+  getAllActors():Observable<Object> {
+    return this.http.get(`${this.apiUrl}/allactors`);
+  }
+  getFilmById(filmId:string):Observable<any> {
+    return this.http.get(`${this.apiUrl}/filmdetails/${filmId}`);
+  }
 }

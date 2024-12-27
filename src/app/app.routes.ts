@@ -3,6 +3,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {RegisterComponent} from './pages/register/register.component';
 import {DenemeComponent} from './pages/deneme/deneme.component';
 import {HomeComponent} from './pages/home/home.component';
+import {FilmDetailsComponent} from './pages/film-details/film-details.component';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,10 @@ export const routes: Routes = [
   {
     path:'deneme',
     component:DenemeComponent,
+  },
+  {
+    path:'filmdetails',
+    component:FilmDetailsComponent
   }
 
 

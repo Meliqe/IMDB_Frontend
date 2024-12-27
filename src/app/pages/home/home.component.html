@@ -36,23 +36,19 @@
 <div class="title"><h1>Kategoriler</h1></div>
 <div class=wrapper>
   <div class="film-strip-container">
-    <button class="btn left-btn" (click)="onLeftArrowClick()">&#8249;</button>
     <div class="film-strip">
       <div class="film-holes top-holes"></div>
       <div class="film-content" >
-        <div class="film-frame" *ngFor="let genre of genresToShow"
-             (click)="onCategoryClick(genre)" >{{ genre }}</div>
+        <div class="film-frame" *ngFor="let genre of genresToShow">{{ genre }}</div>
       </div>
       <div class="film-holes bottom-holes"></div>
     </div>
-    <button class="btn right-btn" (click)="onRightArrowClick()">&#8250;</button>
   </div>
 </div>
 
 
 <div class="title"><h1>Filmler</h1></div>
 <div class="film-container">
-  <button class="scroll-btn left-btn" (click)="ScrollLeft()">&#8249;</button>
   <div class="film-wrapper">
     <div *ngFor="let film of filmsToShow"  class="kart">
       <img src="{{film.posterPath}}" alt="Yellowstone Poster">
@@ -74,11 +70,9 @@
            </div>
     </div>
   </div>
-  <button class="scroll-btn right-btn" (click)="ScrollRight()">&#8250;</button>
 </div>
 <div class="title"><h1>Filmler</h1></div>
 <div class="film-container">
-  <button class="scroll-btn left-btn" (click)="ScrollLeft()">&#8249;</button>
   <div class="film-wrapper">
     <div *ngFor="let film of filmsToShow"  class="kart">
       <img src="{{film.posterPath}}" alt="Yellowstone Poster">
@@ -100,11 +94,9 @@
            </div>
     </div>
   </div>
-  <button class="scroll-btn right-btn" (click)="ScrollRight()">&#8250;</button>
 </div>
 <div class="title"><h1>Filmler</h1></div>
 <div class="film-container">
-  <button class="scroll-btn left-btn" (click)="ScrollLeft()">&#8249;</button>
   <div class="film-wrapper">
     <div *ngFor="let film of filmsToShow"  class="kart">
       <img src="{{film.posterPath}}" alt="{{film.filmName}}">
@@ -126,22 +118,16 @@
            </div>
     </div>
   </div>
-  <button class="scroll-btn right-btn" (click)="ScrollRight()">&#8250;</button>
 </div>
+
 <div class="title"><h1>Oyuncular</h1></div>
+<div class="actors-slider">
 <div class="actors-container">
-  <div class="actor-wrapper">
-    <img src="assets/actor1.jpg" class="image-wrapper-img" alt="Oyuncu Resmi">
-    <h3 class="image-wrapper-h3">Oyuncu Adı 1</h3>
+  <div class="actor-wrapper" *ngFor="let oyuncu of actors" >
+    <img src="{{oyuncu.photoPath}}" class="image-wrapper-img" alt="Oyuncu Resmi">
+    <h3 class="image-wrapper-h3">{{oyuncu.actorName}}</h3>
   </div>
-  <div class="actor-wrapper">
-    <img src="assets/actor1.jpg" class="image-wrapper-img" alt="Oyuncu Resmi">
-    <h3 class="image-wrapper-h3">Oyuncu Adı 2</h3>
-  </div>
-  <div class="actor-wrapper">
-    <img src="assets/actor1.jpg" class="image-wrapper-img" alt="Oyuncu Resmi">
-    <h3 class="image-wrapper-h3">Oyuncu Adı 3</h3>
-  </div>
+</div>
 </div>
 </body>
 </html>

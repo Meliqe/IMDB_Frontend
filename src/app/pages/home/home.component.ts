@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
-import { CommonModule } from '@angular/common'; // Servis sınıfını import edin
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +15,16 @@ export class HomeComponent implements OnInit {
   loading: boolean = true;
   genresToShow: string[] = [];
   filmsToShow: any[] = [];
-  posterPathPrefix: string = 'data:image/jpeg;base64,';
+  PathPrefix: string = 'data:image/jpeg;base64,';
+  actors:any=[];
+  actorsToShow:any=[];
 
   constructor(private filmService: FilmService) {}
 
   ngOnInit(): void {
     this.getFilms();
     this.getGenres();
+    this.getActors();
   }
 
   getFilms(): void {
@@ -30,12 +33,12 @@ export class HomeComponent implements OnInit {
         this.films = data;
         this.films.forEach((film: any) => {
           if (film.posterPath) {
-            film.posterPath = `${this.posterPathPrefix}${film.posterPath}`;
+            film.posterPath = `${this.PathPrefix}${film.posterPath}`;
           }
         });
-        console.log(this.films);
+        //console.log(this.films);
         this.filmsToShow=this.films.slice(0,6);
-        console.log('Gösterilen Filmler:', this.filmsToShow); // Gösterilen filmleri kontrol edin
+        //console.log('Gösterilen Filmler:', this.filmsToShow); // Gösterilen filmleri kontrol edin
         this.loading = false;
       },
       (error) => {
@@ -59,55 +62,24 @@ export class HomeComponent implements OnInit {
     );
   }
 
-
-
-
-  ScrollRight() {
-    // `this.filmsToShow` listesinin son filminden sonraki filmi al
-    const lastFilmIndex = this.films.indexOf(this.filmsToShow[this.filmsToShow.length - 1]);
-
-    // Sonraki filmleri al ve ekle, eğer sona ulaşıldıysa başa dön
-    const nextFilmIndex = (lastFilmIndex + 1) % this.films.length; // Modulus ile döngü sağlanır
-    const nextFilm = this.films[nextFilmIndex];
-
-    // İlk filmi çıkar ve yeni filmi ekle
-    this.filmsToShow.shift();
-    this.filmsToShow.push(nextFilm);
-  }
-
-  ScrollLeft() {
-    // `this.filmsToShow` listesinin ilk filminden önceki filmi al
-    const firstFilmIndex = this.films.indexOf(this.filmsToShow[0]);
-
-    // Önceki filmleri al ve ekle, eğer başa ulaşıldıysa sona dön
-    const prevFilmIndex = (firstFilmIndex - 1 + this.films.length) % this.films.length; // Modulus ile negatif index'ler önlenir
-    const prevFilm = this.films[prevFilmIndex];
-
-    // Son filmi çıkar ve yeni filmi başa ekle
-    this.filmsToShow.pop();
-    this.filmsToShow.unshift(prevFilm);
-  }
-
-
-  onLeftArrowClick() {
-    const currentFirstGenre = this.genresToShow[0];
-    const currentGenres = [...this.genresToShow];
-
-    currentGenres.pop(); // Son kategoriyi çıkar
-    currentGenres.unshift(this.genres[this.genres.indexOf(currentFirstGenre) - 1] || this.genres[this.genres.length - 1]); // Döngüsel kaydırma
-    this.genresToShow = [...currentGenres]; // Yeni dizi
-  }
-
-  onRightArrowClick() {
-    const currentLastGenre = this.genresToShow[this.genresToShow.length - 1];
-    const currentGenres = [...this.genresToShow];
-
-    currentGenres.shift(); // İlk kategoriyi çıkar
-    currentGenres.push(this.genres[this.genres.indexOf(currentLastGenre) + 1] || this.genres[0]);
-    this.genresToShow = [...currentGenres];
-  }
-  onCategoryClick(genre: string): void {
-    console.log('Selected Category:', genre);
+  getActors(): void {
+    this.filmService.getAllActors().subscribe(
+      (data) => {
+        this.actors = data;
+        this.actors.forEach((oyuncu: any) => {
+          if (oyuncu.photoPath) {
+            oyuncu.photoPath = `${this.PathPrefix}${oyuncu.photoPath}`;
+          }
+        });
+        this.actorsToShow = this.actors.slice(0, 5);
+        console.log(this.actorsToShow.length);
+        this.loading = false;
+      },
+      (error) => {
+        console.error('API Hatası:', error);
+        this.loading = false;
+      }
+    );
   }
 
 }

@@ -50,7 +50,7 @@
 <div class="title"><h1>Filmler</h1></div>
 <div class="film-container">
   <div class="film-wrapper">
-    <div *ngFor="let film of filmsToShow"  class="kart">
+    <div *ngFor="let film of filmsToShow"  class="kart" (click)="onFilmClick(film.filmId)">
       <img src="{{film.posterPath}}" alt="Yellowstone Poster">
       <div class="metin">
         <div class="rating-summary">

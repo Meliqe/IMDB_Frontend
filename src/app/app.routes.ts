@@ -28,7 +28,7 @@ export const routes: Routes = [
     component:DenemeComponent,
   },
   {
-    path:'filmdetails',
+    path:'filmdetails/:id',
     component:FilmDetailsComponent
   }
 

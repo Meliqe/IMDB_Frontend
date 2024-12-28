@@ -31,14 +31,13 @@ export class HomeComponent implements OnInit {
     this.filmService.getAllFilms().subscribe(
       (data) => {
         this.films = data;
+        console.log(data);
         this.films.forEach((film: any) => {
           if (film.posterPath) {
             film.posterPath = `${this.PathPrefix}${film.posterPath}`;
           }
         });
-        //console.log(this.films);
         this.filmsToShow=this.films.slice(0,6);
-        //console.log('Gösterilen Filmler:', this.filmsToShow); // Gösterilen filmleri kontrol edin
         this.loading = false;
       },
       (error) => {
@@ -78,6 +77,23 @@ export class HomeComponent implements OnInit {
       (error) => {
         console.error('API Hatası:', error);
         this.loading = false;
+      }
+    );
+  }
+
+  onFilmClick(filmId: string): void {
+    if (!filmId) {
+      console.error('Film ID si gelmedi');
+      return;
+    }
+    console.log('Tıklanılan film ID:', filmId);
+
+    this.filmService.getFilmById(filmId).subscribe(
+      (filmDetails) => {
+        console.log('Film Detayları:', filmDetails);
+      },
+      (error) => {
+        console.error('Film detaylarını alırken hata oluştu:', error);
       }
     );
   }

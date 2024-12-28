@@ -19,7 +19,7 @@ export class FilmService {
   getAllActors():Observable<Object> {
     return this.http.get(`${this.apiUrl}/allactors`);
   }
-  getFilmById(filmId:string):Observable<any> {
+  getFilmById(filmId:string):Observable<Object> {
     return this.http.get(`${this.apiUrl}/filmdetails/${filmId}`);
   }
 }

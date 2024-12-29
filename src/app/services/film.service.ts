@@ -25,4 +25,7 @@ export class FilmService {
   getActorById(actorId:string):Observable<Object> {
     return this.http.get(`${this.apiUrl}/oyuncudetails/${actorId}`);
   }
+  getFilmsByCategoryName(categoryName:string):Observable<Object> {
+    return this.http.get(`${this.apiUrl}/filmsbycategoryname/${categoryName}`);
+  }
 }

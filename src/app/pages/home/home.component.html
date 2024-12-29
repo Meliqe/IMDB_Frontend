@@ -39,7 +39,7 @@
     <div class="film-strip">
       <div class="film-holes top-holes"></div>
       <div class="film-content" >
-        <div class="film-frame" *ngFor="let genre of genresToShow">{{ genre }}</div>
+        <div class="film-frame" *ngFor="let genre of genresToShow" (click)="onGenreClick(genre)">{{ genre }}</div>
       </div>
       <div class="film-holes bottom-holes"></div>
     </div>

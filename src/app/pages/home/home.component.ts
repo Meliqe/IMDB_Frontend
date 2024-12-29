@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
       (data: any) => {
         this.genres = data.map((genre: any) => genre.genreName);
         this.genresToShow = this.genres.slice(0, 9);
+        console.log(this.genresToShow);
         this.loading = false;
       },
       (error) => {
@@ -112,7 +113,6 @@ export class HomeComponent implements OnInit {
     this.filmService.getActorById(actorId).subscribe(
       (actorDetails) => {
         console.log('Actor Details:', actorDetails);
-
         this.router.navigate(['/oyuncudetails', actorId], { state: { actorDetails: actorDetails } });
         console.log('Router state gönderiliyor:', { actorDetails: actorDetails });
       },
@@ -122,4 +122,16 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  onGenreClick(genre:string):void{
+    this.filmService.getFilmsByCategoryName(genre).subscribe(
+      (filmsbycategory)=>{
+        console.log("kategoriye göre filmler:",filmsbycategory);
+        this.router.navigate(['/filmsbycategoryname',genre],{state:{filmsbycategory:filmsbycategory}});
+        console.log('Router state gönderiliyor:', { filmsbycategory: filmsbycategory });
+      },
+      (error) => {
+        console.error('kategoriye göre filmler gelmedi:',error);
+      }
+    )
+  }
 }

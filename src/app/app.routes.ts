@@ -5,6 +5,7 @@ import {DenemeComponent} from './pages/deneme/deneme.component';
 import {HomeComponent} from './pages/home/home.component';
 import {FilmDetailsComponent} from './pages/film-details/film-details.component';
 import {ActorDetailsComponent} from './pages/actor-details/actor-details.component';
+import {CategoryDetailsComponent} from './pages/category-details/category-details.component';
 
 export const routes: Routes = [
   {
@@ -35,5 +36,10 @@ export const routes: Routes = [
   {
     path:"oyuncudetails/:id",
     component:ActorDetailsComponent
+  },
+  {
+    path:"filmsbycategoryname/:categoryName",
+    component:CategoryDetailsComponent
   }
+
 ];

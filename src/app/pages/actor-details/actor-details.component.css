@@ -1,0 +1,54 @@
+.oyuncu-details-container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.oyuncu-details h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+.oyuncu-photo {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.oyuncu-photo img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.oyuncu-bio, .oyuncu-birthdate {
+  margin-top: 20px;
+}
+
+.oyuncu-bio h3, .oyuncu-birthdate h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.oyuncu-bio p, .oyuncu-birthdate p {
+  font-size: 1.2em;
+  color: #666;
+  line-height: 1.5;
+}
+
+.oyuncu-bio p {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.oyuncu-details p {
+  text-align: center;
+  font-size: 1.2em;
+  color: #555;
+}
+

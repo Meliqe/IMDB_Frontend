@@ -22,4 +22,7 @@ export class FilmService {
   getFilmById(filmId:string):Observable<Object> {
     return this.http.get(`${this.apiUrl}/filmdetails/${filmId}`);
   }
+  getActorById(actorId:string):Observable<Object> {
+    return this.http.get(`${this.apiUrl}/oyuncudetails/${actorId}`);
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { CommonModule } from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
   actors:any=[];
   actorsToShow:any=[];
 
-  constructor(private filmService: FilmService) {}
+  constructor(private filmService: FilmService, private router: Router) {}
+  //routerı kullanmak istiyorsak enjecte etmemiz gerek
 
   ngOnInit(): void {
     this.getFilms();
@@ -31,7 +33,7 @@ export class HomeComponent implements OnInit {
     this.filmService.getAllFilms().subscribe(
       (data) => {
         this.films = data;
-        console.log(data);
+        //console.log(data);
         this.films.forEach((film: any) => {
           if (film.posterPath) {
             film.posterPath = `${this.PathPrefix}${film.posterPath}`;
@@ -90,12 +92,34 @@ export class HomeComponent implements OnInit {
 
     this.filmService.getFilmById(filmId).subscribe(
       (filmDetails) => {
-        console.log('Film Detayları:', filmDetails);
+        //console.log('Film Detayları:', filmDetails);
+        //film verisini state ile gönderiyoruz
+        this.router.navigate(['/filmdetails', filmId] ,{ state: { filmDetails: filmDetails } });
       },
       (error) => {
         console.error('Film detaylarını alırken hata oluştu:', error);
       }
     );
+  }
+
+  onOyuncuClick(actorId:string): void {
+    if(!actorId) {
+      console.error('ActorId si gelmedi');
+      return;
+    }
+    console.log('tıklanılan actorun idsi:',actorId);
+
+    this.filmService.getActorById(actorId).subscribe(
+      (actorDetails) => {
+        console.log('Actor Details:', actorDetails);
+
+        this.router.navigate(['/oyuncudetails', actorId], { state: { actorDetails: actorDetails } });
+        console.log('Router state gönderiliyor:', { actorDetails: actorDetails });
+      },
+      (error) => {
+        console.error('Oyuncu detaylarını alırken hata oluştu:', error);
+      }
+    )
   }
 
 }

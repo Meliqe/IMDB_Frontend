@@ -123,7 +123,7 @@
 <div class="title"><h1>Oyuncular</h1></div>
 <div class="actors-slider">
 <div class="actors-container">
-  <div class="actor-wrapper" *ngFor="let oyuncu of actors" >
+  <div class="actor-wrapper" *ngFor="let oyuncu of actors" (click)="onOyuncuClick(oyuncu.id)" >
     <img src="{{oyuncu.photoPath}}" class="image-wrapper-img" alt="Oyuncu Resmi">
     <h3 class="image-wrapper-h3">{{oyuncu.actorName}}</h3>
   </div>

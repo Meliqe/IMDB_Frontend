@@ -1,1 +1,24 @@
-<p>film-details works!</p>
+<div *ngIf="filmDetails; else loadingTemplate">
+  <h1>{{ filmDetails.film.filmName }}</h1>
+  <img
+    src="{{filmDetails.film.posterPath}}"
+    alt="{{ filmDetails.film.filmName }} Poster"
+  />
+  <p><strong>Açıklama:</strong> {{ filmDetails.film.filmDescription }}</p>
+  <p><strong>Yayın Tarihi:</strong> {{ filmDetails.film.filmReleaseDate | date }}</p>
+  <p><strong>Süre:</strong> {{ filmDetails.film.filmDuration }} dakika</p>
+
+  <h3>Türler</h3>
+  <ul>
+    <li *ngFor="let genre of filmDetails.genre">{{ genre.genreName }}</li>
+  </ul>
+
+  <h3>Oyuncular</h3>
+  <ul>
+    <li *ngFor="let actor of filmDetails.actor">{{ actor.actorName }}</li>
+  </ul>
+</div>
+
+<ng-template #loadingTemplate>
+  <p>Yükleniyor...</p>
+</ng-template>

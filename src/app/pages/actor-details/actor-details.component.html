@@ -1,1 +1,33 @@
-<p>actor-details works!</p>
+<div class="actor-details-container">
+  <!-- Yükleniyor durumu -->
+  <div *ngIf="!actorDetails">
+    <p>Yükleniyor...</p>
+  </div>
+
+  <!-- Aktör Detayları -->
+  <div *ngIf="actorDetails" class="actor-details">
+    <h1>{{ actorDetails.actorName }}</h1>
+
+    <!-- Fotoğraf -->
+    <div class="actor-photo">
+      <img [src]="actorDetails.photoPath" alt="{{ actorDetails.actorName }}'s Photo" />
+    </div>
+
+    <!-- Biyografi -->
+    <div class="actor-bio">
+      <h3>Biyografi</h3>
+      <p>{{ actorDetails.biography || 'Biyografi bulunamadı.' }}</p>
+    </div>
+
+    <!-- Doğum Tarihi -->
+    <div class="actor-birthdate">
+      <h3>Doğum Tarihi:</h3>
+      <p>{{ actorDetails.birthDate | date: 'dd MMMM yyyy' }}</p>
+    </div>
+  </div>
+
+  <!-- Hata durumu -->
+  <div *ngIf="actorDetails && !actorDetails.actorName">
+    <p>Aktör bilgileri eksik.</p>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import {RegisterComponent} from './pages/register/register.component';
 import {DenemeComponent} from './pages/deneme/deneme.component';
 import {HomeComponent} from './pages/home/home.component';
 import {FilmDetailsComponent} from './pages/film-details/film-details.component';
+import {ActorDetailsComponent} from './pages/actor-details/actor-details.component';
 
 export const routes: Routes = [
   {
@@ -30,7 +31,9 @@ export const routes: Routes = [
   {
     path:'filmdetails/:id',
     component:FilmDetailsComponent
+  },
+  {
+    path:"oyuncudetails/:id",
+    component:ActorDetailsComponent
   }
-
-
 ];

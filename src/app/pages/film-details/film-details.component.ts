@@ -24,7 +24,11 @@ export class FilmDetailsComponent {
     if(filmDetails){
       this.filmDetails=filmDetails;
       this.filmDetails.film.posterPath = `${this.PathPrefix}${this.filmDetails.film.posterPath}`;
-      //console.log(this.filmDetails);
+      this.filmDetails.actor.forEach((actor: any) => {
+        actor.photoPath = `${this.PathPrefix}${actor.photoPath}`;
+      });
+      console.log(this.filmDetails.actor);
+      console.log(this.filmDetails.film.posterPath);
     }
   }
 }

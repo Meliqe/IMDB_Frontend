@@ -1,24 +1,50 @@
-<div *ngIf="filmDetails; else loadingTemplate">
-  <h1>{{ filmDetails.film.filmName }}</h1>
-  <img
-    src="{{filmDetails.film.posterPath}}"
-    alt="{{ filmDetails.film.filmName }} Poster"
-  />
-  <p><strong>Açıklama:</strong> {{ filmDetails.film.filmDescription }}</p>
-  <p><strong>Yayın Tarihi:</strong> {{ filmDetails.film.filmReleaseDate | date }}</p>
-  <p><strong>Süre:</strong> {{ filmDetails.film.filmDuration }} dakika</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>IMDb Clone</title>
 
-  <h3>Türler</h3>
-  <ul>
-    <li *ngFor="let genre of filmDetails.genre">{{ genre.genreName }}</li>
-  </ul>
+</head>
+<body>
+<div class="container" >
+  <div class="film-container">
+    <div class="poster">
+      <img
+        src="{{filmDetails.film.posterPath}}"
+      />
+    </div>
+    <div class="details">
+      <div class="title">
+        <p>{{filmDetails.film.filmName}}</p>
+      </div>
+      <div class="description">
+        <p>{{ filmDetails.film.filmDescription }}</p>
+        <div class="altbilgi">
+          <div class="turler" *ngFor="let genres of filmDetails.genre">
+            {{genres.genreName}}
+          </div>
+          <div class="sure">
+            Süre:{{filmDetails.film.filmDuration}} dakika
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
 
-  <h3>Oyuncular</h3>
-  <ul>
-    <li *ngFor="let actor of filmDetails.actor">{{ actor.actorName }}</li>
-  </ul>
+  <div class="actors">
+    <h2>Oyuncular</h2>
+    <div class="actor-list">
+      <img class="actor"  *ngFor="let actor of filmDetails.actor"
+        src="{{actor.photoPath}}"
+      />
+    </div>
+  </div>
+  <div class="comments">
+    <p>Yorumlar buraya gelecek</p>
+  </div>
+
 </div>
-
-<ng-template #loadingTemplate>
-  <p>Yükleniyor...</p>
-</ng-template>
+</body>
+</html>

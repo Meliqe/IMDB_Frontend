@@ -1,54 +1,74 @@
-.oyuncu-details-container {
-  margin: 20px;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: black; /* Sayfa arka plan rengi */
+  color: white; /* Yazı rengi */
+}
+
+.container {
+  display: flex; /* Flexbox düzeni */
+  justify-content: center; /* Tüm içeriği yatayda ortalar */
+  align-items: center; /* Tüm içeriği dikeyde ortalar */
+  min-height: 100vh; /* Tüm ekran yüksekliğini kaplar */
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
-.oyuncu-details h1 {
-  font-size: 2.5em;
-  font-weight: bold;
+.oyuncubilgileri {
+  display: flex; /* İçeriği yatay olarak düzenler */
+  gap: 30px; /* Fotoğraf ve detaylar arasında boşluk bırakır */
+  background-color: #333; /* Kapsayıcı arka plan rengi */
+  border-radius: 10px; /* Köşeleri yuvarlar */
+  padding: 20px; /* Kapsayıcı iç boşluğu */
+  width: 100%;
+  margin-right: 100px;
+  margin-left: 100px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Hafif gölge efekti */
+}
+
+.fotograf img {
+  width: 600px; /* Fotoğraf genişliği */
+  height: 600px; /* Fotoğraf yüksekliği */
+  object-fit: cover; /* Fotoğrafın boyutlandırılmasını kontrol eder */
+  border: 3px solid white; /* Beyaz çerçeve ekler */
+}
+
+.detay {
+  display: flex;
+  flex-direction: column; /* İçeriği dikey olarak hizalar */
+  gap: 15px; /* Başlık, biyografi ve doğum yılı arasında boşluk bırakır */
+  width: 100%; /* Genişliği kapsayıcıya yayar */
+  justify-content: flex-start; /* Varsayılan olarak içeriği üste hizalar */
+  position: relative; /* Doğum yılını alt sağa hizalamak için temel */
+}
+
+.detay h1 {
+  font-size: 32px;
+  margin: 10px;
+  padding: 20px;
+  color: #FFD700;
   text-align: center;
-  color: #333;
+
 }
 
-.oyuncu-photo {
-  text-align: center;
-  margin-top: 20px;
+.detay p {
+  font-size: 18px; /* Biyografi yazı boyutu */
+  line-height: 1.6; /* Satır yüksekliği */
+  margin: 0; /* Varsayılan boşlukları kaldırır */
+  text-align: justify;
+  margin: 10px;
+  padding: 20px;
+  height: 330px;
 }
 
-.oyuncu-photo img {
-  max-width: 200px;
-  height: auto;
-  border-radius: 8px;
+.detay-dogumyili {
+  margin-top: auto; /* Kendini detay kısmının altına iter */
+  margin-left: auto; /* Kendini sağ tarafa iter */
+  padding: 10px 15px; /* İç boşluk */
+  background-color: #444; /* Arka plan rengi */
+  color: white; /* Yazı rengi */
+  border-radius: 5px; /* Köşeleri yuvarlama */
+  font-size: 14px; /* Yazı boyutu */
+  white-space: nowrap; /* Uzun metin taşmasını engeller */
+  text-align: center; /* Yazıyı ortalar */
 }
-
-.oyuncu-bio, .oyuncu-birthdate {
-  margin-top: 20px;
-}
-
-.oyuncu-bio h3, .oyuncu-birthdate h3 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  color: #555;
-}
-
-.oyuncu-bio p, .oyuncu-birthdate p {
-  font-size: 1.2em;
-  color: #666;
-  line-height: 1.5;
-}
-
-.oyuncu-bio p {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.oyuncu-details p {
-  text-align: center;
-  font-size: 1.2em;
-  color: #555;
-}
-

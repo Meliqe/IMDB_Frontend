@@ -1,33 +1,25 @@
-<div class="actor-details-container">
-  <!-- Yükleniyor durumu -->
-  <div *ngIf="!actorDetails">
-    <p>Yükleniyor...</p>
-  </div>
-
-  <!-- Aktör Detayları -->
-  <div *ngIf="actorDetails" class="actor-details">
-    <h1>{{ actorDetails.actorName }}</h1>
-
-    <!-- Fotoğraf -->
-    <div class="actor-photo">
-      <img [src]="actorDetails.photoPath" alt="{{ actorDetails.actorName }}'s Photo" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<div class="container">
+  <div class="oyuncubilgileri">
+    <div class="fotograf">
+      <img src="{{actorDetails.photoPath}}">
     </div>
-
-    <!-- Biyografi -->
-    <div class="actor-bio">
-      <h3>Biyografi</h3>
-      <p>{{ actorDetails.biography || 'Biyografi bulunamadı.' }}</p>
+    <div class="detay">
+      <h1>{{actorDetails.actorName}}</h1>
+      <p>{{actorDetails.biography}}</p>
+      <div class="detay-dogumyili">
+        Doğum tarihi: {{ actorDetails.birthDate | date: 'dd/MM/yyyy' }}
+      </div>
     </div>
-
-    <!-- Doğum Tarihi -->
-    <div class="actor-birthdate">
-      <h3>Doğum Tarihi:</h3>
-      <p>{{ actorDetails.birthDate | date: 'dd MMMM yyyy' }}</p>
-    </div>
-  </div>
-
-  <!-- Hata durumu -->
-  <div *ngIf="actorDetails && !actorDetails.actorName">
-    <p>Aktör bilgileri eksik.</p>
   </div>
 </div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   background-color: black;
   color: white;
 }
@@ -122,20 +122,11 @@ body {
 
 .comments {
   grid-area: comments;
+  background-color: #444;
   padding: 20px;
   border-radius: 10px;
 }
-.comments h2 {
-  text-align: left; /* Başlığı sola hizalar */
-  margin-bottom: 20px; /* Başlık ile oyuncular arasında boşluk bırakır */
-  color: white; /* Yazı rengini beyaz yapar */
-  padding: 20px;
-  font-size: 36px;
-}
-.comments p{
-  background-color:#444 ;
-  height: 600px;
-}
+
 .altbilgi {
   display: flex; /* Flexbox düzeni */
   flex-wrap: wrap; /* Türler sığmazsa alt satıra taşınır */

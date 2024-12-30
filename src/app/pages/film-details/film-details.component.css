@@ -52,6 +52,8 @@ body {
   gap: 10px;
   height: 600px;
   width: 500px;
+  background-color: #333;
+  border-radius: 10px;
 }
 
 .details .title {
@@ -67,14 +69,18 @@ body {
   color: white; /* Yazı rengini beyaz yapar */
 }
 
-.details .description {
-  padding: 40px;
+.description {
+  position: relative; /* İçeriği düzenlemek için relative kullanılıyor */
+  padding: 20px;
   border-radius: 10px;
-  height: 410px;
-  font-size: 20px;
-  text-align: center;
+  height: 560px;
+  display: flex;
+  flex-direction: column;
 }
-
+.description p {
+  font-size: 17px;
+  text-align:justify;
+}
 .actors {
   grid-area: actors;
   padding: 20px;
@@ -106,13 +112,74 @@ body {
   margin: 0; /* Ekstra boşlukları kaldırır */
   background-color: #333; /* Dairesel kutuların arka planı */
 }
-
-
-
+.actorbox {
+  display: flex; /* Flexbox düzeni */
+  flex-direction: column; /* Elemanları dikey hizalar (alt alta) */
+  align-items: center; /* Elemanları yatayda ortalar */
+  text-align: center; /* Yazıyı ortalar */
+  gap: 10px; /* Fotoğraf ve isim arasında boşluk bırakır */
+}
 
 .comments {
   grid-area: comments;
-  background-color: #444;
   padding: 20px;
   border-radius: 10px;
 }
+.comments h2 {
+  text-align: left; /* Başlığı sola hizalar */
+  margin-bottom: 20px; /* Başlık ile oyuncular arasında boşluk bırakır */
+  color: white; /* Yazı rengini beyaz yapar */
+  padding: 20px;
+  font-size: 36px;
+}
+.comments p{
+  background-color:#444 ;
+  height: 600px;
+}
+.altbilgi {
+  display: flex; /* Flexbox düzeni */
+  flex-wrap: wrap; /* Türler sığmazsa alt satıra taşınır */
+  gap: 10px; /* Türler arasında boşluk */
+  padding: 10px;
+}
+
+.turler {
+  padding: 10px 15px; /* Kutucuk iç boşluğu */
+  background-color: #444; /* Arka plan rengi */
+  color: white; /* Yazı rengi */
+  border-radius: 5px; /* Köşeleri yuvarlama */
+  font-size: 14px; /* Yazı boyutu */
+  white-space: nowrap; /* Uzun metin taşmasını engeller */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+  text-align: center; /* Yazıyı ortalar */
+  cursor: pointer; /* Hover efekti için el simgesi */
+  transition: background-color 0.3s, color 0.3s; /* Hover animasyonu */
+}
+
+.altbilgi div:hover {
+  background-color: white; /* Hover'da arka plan beyaz */
+  color: #444; /* Hover'da yazı rengi koyu */
+}
+
+
+.sure {
+  margin-left: auto; /* Kendini otomatik olarak sağa iter */
+  padding: 10px 15px; /* Süre kutusunun iç boşluğu */
+  background-color: #444; /* Süre kutusunun arka plan rengi */
+  color: white; /* Süre yazı rengi */
+  border-radius: 5px; /* Köşeleri yuvarlama */
+  font-size: 14px; /* Yazı boyutu */
+  white-space: nowrap; /* Uzun metin taşmasını engeller */
+  text-align: center; /* Yazıyı ortalar */
+}
+.tarih{
+  margin-right: auto; /* Kendini otomatik olarak sağa iter */
+  padding: 10px 15px; /* Süre kutusunun iç boşluğu */
+  background-color: #444; /* Süre kutusunun arka plan rengi */
+  color: white; /* Süre yazı rengi */
+  border-radius: 5px; /* Köşeleri yuvarlama */
+  font-size: 14px; /* Yazı boyutu */
+  white-space: nowrap; /* Uzun metin taşmasını engeller */
+  text-align: center; /* Yazıyı ortalar */
+}
+

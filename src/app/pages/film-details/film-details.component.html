@@ -21,13 +21,18 @@
       </div>
       <div class="description">
         <p>{{ filmDetails.film.filmDescription }}</p>
-        <div class="altbilgi">
-          <div class="turler" *ngFor="let genres of filmDetails.genre">
-            {{genres.genreName}}
-          </div>
-          <div class="sure">
-            Süre:{{filmDetails.film.filmDuration}} dakika
-          </div>
+      </div>
+      <div class="altbilgi">
+        <div class="tarih">
+          Çıkış Tarihi:{{ filmDetails.film.filmReleaseDate | date:'yyyy' }}
+        </div>
+      </div>
+      <div class="altbilgi">
+        <div class="turler" *ngFor="let genres of filmDetails.genre">
+          {{genres.genreName}}
+        </div>
+        <div class="sure">
+          Süre:{{filmDetails.film.filmDuration}} dakika
         </div>
       </div>
   </div>
@@ -36,12 +41,16 @@
   <div class="actors">
     <h2>Oyuncular</h2>
     <div class="actor-list">
-      <img class="actor"  *ngFor="let actor of filmDetails.actor"
-        src="{{actor.photoPath}}"
-      />
+      <div class="actorbox"*ngFor="let actor of filmDetails.actor">
+        <img class="actor"
+             src="{{actor.photoPath}}"
+        />
+        <p>{{actor.actorName}}</p>
+      </div>
     </div>
   </div>
   <div class="comments">
+    <h2>Yorumlar</h2>
     <p>Yorumlar buraya gelecek</p>
   </div>
 

@@ -19,6 +19,9 @@ export class HomeComponent implements OnInit {
   PathPrefix: string = 'data:image/jpeg;base64,';
   actors:any=[];
   actorsToShow:any=[];
+  selectedFilm: any = null;
+  rating: number = 0;
+  tempRating: number = 0; // Geçici puan (hover için)
 
   constructor(private filmService: FilmService, private router: Router) {}
   //routerı kullanmak istiyorsak enjecte etmemiz gerek
@@ -93,8 +96,6 @@ export class HomeComponent implements OnInit {
 
     this.filmService.getFilmById(filmId).subscribe(
       (filmDetails) => {
-        //console.log('Film Detayları:', filmDetails);
-        //film verisini state ile gönderiyoruz
         this.router.navigate(['/filmdetails', filmId] ,{ state: { filmDetails: filmDetails } });
       },
       (error) => {
@@ -134,4 +135,36 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
+  hoverRating(tempRating: number): void {
+    this.tempRating = tempRating;
+  }
+
+  rateFilm(value: number): void {
+    this.rating = value; // Kalıcı seçim
+    console.log(`Seçilen puan: ${value}`);
+  }
+
+  getStarClass(index: number): string {
+    return index < (this.tempRating || this.rating) ? 'active' : '';
+  }
+
+
+  submitRating(): void {
+    console.log(`${this.selectedFilm.filmName} için verilen puan: ${this.rating}`);
+    this.resetStars(); // Yıldızları sıfırla
+    this.closeModal(); // Modalı kapat
+  }
+  resetStars(): void {
+    this.rating = 0;
+    this.tempRating = 0;
+  }
+  openModal(film: any): void {
+    this.selectedFilm = film;
+  }
+
+  closeModal(): void {
+    this.selectedFilm = null;
+  }
+
 }

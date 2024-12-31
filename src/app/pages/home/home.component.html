@@ -50,27 +50,49 @@
 <div class="title"><h1>Filmler</h1></div>
 <div class="film-container">
   <div class="film-wrapper">
-    <div *ngFor="let film of filmsToShow"  class="kart" (click)="onFilmClick(film.filmId)">
-      <img src="{{film.posterPath}}" alt="Yellowstone Poster">
+    <div *ngFor="let film of filmsToShow" class="kart" >
+      <img src="{{film.posterPath}}" alt="Yellowstone Poster" (click)="onFilmClick(film.filmId)">
       <div class="metin">
         <div class="rating-summary">
-          <span class="star-icon">★</span>
+          <span class="star-icon" (click)="openModal(film)">★</span>
           <span id="average-rating">0.0</span>
-          <div class="rating">
-            <span class="star-outline" data-value="1">☆</span>
-            <span class="star-outline" data-value="2">☆</span>
-            <span class="star-outline" data-value="3">☆</span>
-            <span class="star-outline" data-value="4">☆</span>
-            <span class="star-outline" data-value="5">☆</span>
-          </div>
         </div>
         <h2>{{ film.filmName }}</h2>
         <a href="#">+ Watchlist</a>
         <b href="#">► Trailer</b>
-           </div>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- Modal Yapısı -->
+<div class="overlay" id="modalOverlay" *ngIf="selectedFilm">
+  <div class="modal">
+    <button class="close-btn" (click)="closeModal()">×</button>
+    <div class="modal-header">
+      <div class="star-icon">★</div>
+      <h2>Rate This</h2>
+    </div>
+    <div class="modal-content">
+      <h3>{{ selectedFilm.filmName }}</h3>
+      <div class="stars">
+        <span
+          class="star"
+          *ngFor="let star of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; let i = index"
+          [ngClass]="getStarClass(i)"
+        (click)="rateFilm(i + 1)"
+        (mouseenter)="hoverRating(i + 1)"
+        (mouseleave)="hoverRating(0)"
+        >
+        ★
+        </span>
+      </div>
+      <button class="rate-btn" (click)="submitRating()">Rate</button>
+    </div>
+  </div>
+</div>
+
+
 <div class="title"><h1>Filmler</h1></div>
 <div class="film-container">
   <div class="film-wrapper">

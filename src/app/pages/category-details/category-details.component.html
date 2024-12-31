@@ -1,17 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
 <div class="title">
   <h1>{{categoryName}}</h1>
 </div>
 <div class="film-container">
   <div class="film-wrapper">
-    <!-- Filmleri döngüyle listele -->
-    <div *ngFor="let film of categories" class="kart">
-      <img src="{{ film.posterPath }}" alt="{{ film.filmName }} Poster">
+    <div *ngFor="let film of categories" class="kart" >
+      <img src="{{film.posterPath}}" alt="Yellowstone Poster" (click)="onFilmClick(film.filmId)">
       <div class="metin">
+        <div class="rating-summary">
+          <span class="star-icon" (click)="openModal(film)">★</span>
+          <span id="average-rating">0.0</span>
+        </div>
         <h2>{{ film.filmName }}</h2>
-        <p>{{ film.filmDescription }}</p>
         <a href="#">+ Watchlist</a>
         <b href="#">► Trailer</b>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Modal Yapısı -->
+<div class="overlay" id="modalOverlay" *ngIf="selectedFilm">
+  <div class="modal">
+    <button class="close-btn" (click)="closeModal()">×</button>
+    <div class="modal-header">
+      <div class="star-icon">★</div>
+      <h2>Rate This</h2>
+    </div>
+    <div class="modal-content">
+      <h3>{{ selectedFilm.filmName }}</h3>
+      <div class="stars">
+        <span
+          class="star"
+          *ngFor="let star of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; let i = index"
+          [ngClass]="getStarClass(i)"
+          (click)="rateFilm(i + 1)"
+          (mouseenter)="hoverRating(i + 1)"
+          (mouseleave)="hoverRating(0)"
+        >
+        ★
+        </span>
+      </div>
+      <button class="rate-btn" (click)="submitRating()">Rate</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

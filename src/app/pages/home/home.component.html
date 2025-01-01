@@ -19,7 +19,7 @@
     <a href="/">Home</a>
     <a href="#">Movies</a>
     <ng-container *ngIf="currentUser; else guest">
-      <span>Welcome, {{ currentUser.name }}</span>
+      <a href="/userdetails"> {{ currentUser.name }}</a>
       <button (click)="logout()">Logout</button>
     </ng-container>
     <ng-template #guest>

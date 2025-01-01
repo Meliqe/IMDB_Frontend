@@ -6,6 +6,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {FilmDetailsComponent} from './pages/film-details/film-details.component';
 import {ActorDetailsComponent} from './pages/actor-details/actor-details.component';
 import {CategoryDetailsComponent} from './pages/category-details/category-details.component';
+import {UserDetailsComponent} from './pages/user-details/user-details.component';
 
 export const routes: Routes = [
   {
@@ -40,6 +41,11 @@ export const routes: Routes = [
   {
     path:"filmsbycategoryname/:categoryName",
     component:CategoryDetailsComponent
+  },
+  {
+    path:"userdetails",
+    component:UserDetailsComponent
   }
+
 
 ];

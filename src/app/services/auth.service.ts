@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpInterceptorFn} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import jwt_decode from 'jwt-decode';
 
 @Injectable({ //DI sistemi tarafından kullanılmasını sağlar
   providedIn: 'root' //uygulamanın root modülüne otoatik sağlanır

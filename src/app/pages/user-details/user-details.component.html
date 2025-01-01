@@ -1,1 +1,14 @@
-<p>user-details works!</p>
+<div *ngIf="currentUser; else noUser">
+  <h2>Welcome, {{ currentUser.name }}</h2>
+  <ul>
+    <li><strong>Name:</strong> {{ currentUser.name }}</li>
+    <li><strong>Surname:</strong> {{ currentUser.surname }}</li>
+    <li><strong>Email:</strong> {{ currentUser.email }}</li>
+    <li><strong>Phone:</strong> {{ currentUser.phone }}</li>
+  </ul>
+</div>
+
+<ng-template #noUser>
+  <p>No user information available. Please log in.</p>
+</ng-template>
+

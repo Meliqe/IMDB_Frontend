@@ -14,7 +14,7 @@ export class FilmDetailsComponent {
 
   filmDetails:any;
   PathPrefix: string = 'data:image/jpeg;base64,';
-
+  comment:string='';
   constructor(private filmService: FilmService, private route:ActivatedRoute, private router:Router) { }
   ngOnInit(): void {
     this.getFilmDetails();
@@ -31,4 +31,5 @@ export class FilmDetailsComponent {
       console.log(this.filmDetails.film.posterPath);
     }
   }
+
 }

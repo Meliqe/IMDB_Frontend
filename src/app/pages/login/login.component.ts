@@ -23,27 +23,42 @@ export class LoginComponent {
 
   constructor(private authService: AuthService , private router: Router) { }
 
-  onLogin(){
-    const credentials = {email:this.email, password:this.password};
+  onLogin() {
+    const credentials = { email: this.email, password: this.password };
     this.authService.login(credentials).subscribe({
-      next:(response)=>{
-        if(response.token){
-          console.log("Giriş Başarılı:"+response.token);
-          this.errorMessage='';
-          this.router.navigate(['/deneme']);
+      next: (response) => {
+        if (response.token) {
+          console.log("Giriş Başarılı:" + response.token);
+          this.authService.saveToken(response.token);
+
+          const userId = this.authService.getUserIdFromToken();
+          if (userId) {
+            this.authService.getUserDetails(userId).subscribe({
+              next: (userDetails) => {
+                console.log('Kullanıcı bilgileri:', userDetails);
+                this.authService.setCurrentUser(userDetails);
+                this.router.navigate(['/home']);
+              },
+              error: (err) => {
+                console.error('Kullanıcı bilgileri alınırken hata:', err);
+              },
+            });
+          } else {
+            this.errorMessage = 'Token süresi dolmuş, lütfen tekrar giriş yapın.';
+            this.router.navigate(['/login']);
+          }
         }
       },
       error: (err) => {
         if (err.status === 400) {
           this.errorMessage = err.error?.message || "Geçersiz E-mail formatı.";
-        }else if(err.status === 401) {
+        } else if (err.status === 401) {
           this.errorMessage = err.error?.message || "Hatalı giriş bilgileri...";
-        }
-        else {
+        } else {
           this.errorMessage = err.error?.message || "Bir hata oluştu! Lütfen tekrar deneyin.";
         }
         console.error('Giriş hatası:', err);
-      }
-    })
-  };
+      },
+    });
+  }
 }

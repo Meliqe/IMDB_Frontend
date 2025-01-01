@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { CommonModule } from '@angular/common';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -21,15 +22,17 @@ export class HomeComponent implements OnInit {
   actorsToShow:any=[];
   selectedFilm: any = null;
   rating: number = 0;
-  tempRating: number = 0; // Geçici puan (hover için)
+  tempRating: number = 0;
+  currentUser: any = null;
 
-  constructor(private filmService: FilmService, private router: Router) {}
+  constructor(private filmService: FilmService, private router: Router , private authService:AuthService) { }
   //routerı kullanmak istiyorsak enjecte etmemiz gerek
 
   ngOnInit(): void {
     this.getFilms();
     this.getGenres();
     this.getActors();
+    this.currentUser = this.authService.getCurrentUser();
   }
 
   getFilms(): void {
@@ -167,4 +170,9 @@ export class HomeComponent implements OnInit {
     this.selectedFilm = null;
   }
 
+  logout(): void {
+    this.authService.clearCurrentUser(); // Kullanıcı bilgilerini temizle
+    this.authService.clearToken(); // Token'ı temizle
+    this.currentUser = null; // Navbar'daki bilgiyi sıfırla
+  }
 }

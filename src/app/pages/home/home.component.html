@@ -18,7 +18,13 @@
   <div class="links">
     <a href="/">Home</a>
     <a href="#">Movies</a>
-    <a href="/login">Login/Register</a>
+    <ng-container *ngIf="currentUser; else guest">
+      <span>Welcome, {{ currentUser.name }}</span>
+      <button (click)="logout()">Logout</button>
+    </ng-container>
+    <ng-template #guest>
+      <a href="/login">Login/Register</a>
+    </ng-template>
   </div>
 </nav>
 <div class="top">

@@ -20,7 +20,6 @@
     <a href="#">Movies</a>
     <ng-container *ngIf="currentUser; else guest">
       <a href="/userdetails"> {{ currentUser.name }}</a>
-      <button (click)="logout()">Logout</button>
     </ng-container>
     <ng-template #guest>
       <a href="/login">Login/Register</a>

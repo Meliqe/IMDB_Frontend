@@ -1,14 +1,38 @@
-<div *ngIf="currentUser; else noUser">
-  <h2>Welcome, {{ currentUser.name }}</h2>
-  <ul>
-    <li><strong>Name:</strong> {{ currentUser.name }}</li>
-    <li><strong>Surname:</strong> {{ currentUser.surname }}</li>
-    <li><strong>Email:</strong> {{ currentUser.email }}</li>
-    <li><strong>Phone:</strong> {{ currentUser.phone }}</li>
-  </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<div class="top-bar">
+  <img src="assets/cinema-user.jpg">
+  <div class="user-box">
+    <div *ngIf="currentUser; else noUser">
+      <h1>{{ currentUser.name + ' ' + currentUser.surname}}</h1>
+      <div class="info">{{ currentUser.email }}</div>
+      <div class="info">{{ currentUser.phone }}</div>
+      <div class="info">{{currentUser.createTime | date: 'MMMM yyyy'}}</div>
+    </div>
+    <div class="buttons">
+      <button (click)="logout()">Logout</button>
+      <button (click)="editProfile()">Edit Profile</button>
+    </div>
+  </div>
+</div>
+<h1>WatchList</h1>
+<div class="watchlist">
+  Watch list
+</div>
+<h1>Rating</h1>
+<div class="rated">
+  Rated
 </div>
 
 <ng-template #noUser>
   <p>No user information available. Please log in.</p>
 </ng-template>
-
+</body>
+</html>

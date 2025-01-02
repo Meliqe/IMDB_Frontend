@@ -20,6 +20,13 @@ ngOnInit():void{
     this.router.navigate(['/login']);
   }
 }
+  logout(): void {
+    this.authService.clearCurrentUser(); // Kullanıcı bilgilerini temizle
+    this.authService.clearToken(); // Token'ı temizle
+    this.currentUser = null; // Navbar'daki bilgiyi sıfırla
+  }
 
-
+  editProfile(): void {
+  console.log("edit tuşuna basıldı");
+  }
 }

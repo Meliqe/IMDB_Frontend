@@ -170,9 +170,4 @@ export class HomeComponent implements OnInit {
     this.selectedFilm = null;
   }
 
-  logout(): void {
-    this.authService.clearCurrentUser(); // Kullanıcı bilgilerini temizle
-    this.authService.clearToken(); // Token'ı temizle
-    this.currentUser = null; // Navbar'daki bilgiyi sıfırla
-  }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpInterceptorFn} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({ //DI sistemi tarafından kullanılmasını sağlar
@@ -22,7 +22,6 @@ export class AuthService {
   clearCurrentUser(): void {
     localStorage.removeItem('currentUser');
   }
-
 
 
   login(credentials: { email:string; password: string }): Observable<any> {
@@ -63,5 +62,8 @@ export class AuthService {
   }
   clearToken(): void {
     localStorage.removeItem('token');
+  }
+  getToken():string | null {
+    return localStorage.getItem('token');
   }
 }

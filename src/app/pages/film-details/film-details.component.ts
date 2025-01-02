@@ -27,8 +27,8 @@ export class FilmDetailsComponent {
       this.filmDetails.actor.forEach((actor: any) => {
         actor.photoPath = `${this.PathPrefix}${actor.photoPath}`;
       });
-      console.log(this.filmDetails.actor);
-      console.log(this.filmDetails.film.posterPath);
+      //console.log(this.filmDetails.actor);
+      //console.log(this.filmDetails.film.posterPath);
     }
   }
 

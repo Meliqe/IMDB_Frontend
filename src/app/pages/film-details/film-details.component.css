@@ -122,10 +122,52 @@ body {
 
 .comments {
   grid-area: comments;
-  background-color: #444;
   padding: 20px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
+
+.comments .commentbox {
+  background-color: #444;
+  height: auto; /* Yüksekliği içeriğe göre ayarlar */
+  width: 100%; /* Genişliği parent'ı kapsar */
+  border-radius: 10px;
+  padding: 20px; /* İç boşluk */
+  display: flex;
+  flex-direction: column; /* Dikeyde hizalar */
+  align-items: center; /* Yatayda ortalar */
+  gap: 10px; /* Elemanlar arasında boşluk */
+}
+
+.comments .commentbox textarea {
+  width: 100%; /* Textarea genişliği */
+  height: 70px; /* Yükseklik */
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.comments .commentbox button {
+  align-self: flex-end; /* Sağ tarafa yasla */
+  padding: 10px 20px;
+  background-color:#FFD700 ;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.comments .commentbox button:hover {
+  background-color: #a95e13;
+}
+
+.comments .allcommentbox{
+  display: flex;
+}
+
 
 .altbilgi {
   display: flex; /* Flexbox düzeni */

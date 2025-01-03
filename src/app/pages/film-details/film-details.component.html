@@ -49,8 +49,8 @@
     </div>
   </div>
   <div class="comments">
-    <h2>Yorumlar</h2>
-    <p>Yorumlar buraya gelecek</p>
+    <textarea [(ngModel)]="content" placeholder="Yorumunuzu buraya yazın..."></textarea>
+    <button (click)="addComment()">Yorum Ekle</button>
   </div>
 
 </div>

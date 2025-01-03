@@ -28,4 +28,8 @@ export class FilmService {
   getFilmsByCategoryName(categoryName:string):Observable<Object> {
     return this.http.get(`${this.apiUrl}/filmsbycategoryname/${categoryName}`);
   }
+  addComment(comment :{userid:string,filmid:string,content:string}):Observable<Object> {
+    return this.http.post(`${this.apiUrl}/addcomment`, comment);
+  }
+
 }

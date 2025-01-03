@@ -19,7 +19,7 @@ export class FilmDetailsComponent {
   currentUser: any =null;
   content:string = '';
 
-  constructor(private filmService: FilmService, private route:ActivatedRoute, private router:Router , private authService : AuthService) { }
+  constructor(private filmService: FilmService, private route:ActivatedRoute, private router:Router , private authService : AuthService  ) { }
   ngOnInit(): void {
     this.getFilmDetails();
     this.currentUser = this.authService.getCurrentUser();
@@ -38,6 +38,10 @@ export class FilmDetailsComponent {
   }
 
   addComment(){
+    if (!this.currentUser) {
+      this.router.navigate(['/login']);
+      return;
+    }
     if (!this.content || this.content.trim() === '') {
       alert("Yorum boş olamaz!");
       return;
@@ -57,7 +61,7 @@ export class FilmDetailsComponent {
       },
       error:()=>{
         console.error("yorum eklenirken hata!!");
-        alert("yorum eklenirken hata!!");
+        alert("Lütfen giriş yapın!!!");
         this.content='';
       }
     })

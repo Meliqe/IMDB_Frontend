@@ -59,6 +59,10 @@
     <div class="allcomments">
       <h1>Yorumlar</h1>
       <div class="allcommentbox">
+        <div *ngFor="let comment of comments" class="comment">
+          <p>{{ comment.content }}</p>
+          <span class="date">{{ comment.publishedDate | date: 'dd/MM/yyyy' }}</span>
+        </div>
       </div>
     </div>
   </div>

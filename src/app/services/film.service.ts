@@ -31,5 +31,7 @@ export class FilmService {
   addComment(comment :{userid:string,filmid:string,content:string}):Observable<Object> {
     return this.http.post(`${this.apiUrl}/addcomment`, comment);
   }
-
+  allCommentsByFilmId(filmId:string):Observable<Object> {
+    return this.http.get(`${this.apiUrl}/allcommentsbyfilmid/${filmId}`);
+  }
 }

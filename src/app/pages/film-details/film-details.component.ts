@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit  } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FilmService} from '../../services/film.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -18,11 +18,14 @@ export class FilmDetailsComponent {
   PathPrefix: string = 'data:image/jpeg;base64,';
   currentUser: any =null;
   content:string = '';
+  comments:any=null;
 
   constructor(private filmService: FilmService, private route:ActivatedRoute, private router:Router , private authService : AuthService  ) { }
   ngOnInit(): void {
+    console.log('ngOnInit çağrıldı!'); //ngoninit kullanılmıyor gibi gözüküyor o yüzden loga baktım
     this.getFilmDetails();
     this.currentUser = this.authService.getCurrentUser();
+    this.allCommentsByFilmId();
   }
   getFilmDetails():void {
     const filmDetails=history.state.filmDetails;
@@ -65,5 +68,22 @@ export class FilmDetailsComponent {
         this.content='';
       }
     })
+  }
+
+  allCommentsByFilmId(){
+    const filmDetails=history.state.filmDetails;
+    if(filmDetails){
+     const filmid = filmDetails.film.filmId;
+     console.log(filmid);
+     this.filmService.allCommentsByFilmId(filmid).subscribe({
+       next:(data)=>{
+         console.log("Yorumlar başarıyla alındı:", data);
+         this.comments=data;
+       },
+       error:(err)=>{
+         console.error("Yorumlar alınırken hata oluştu:", err);
+       }
+     })
+    }
   }
 }

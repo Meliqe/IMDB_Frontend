@@ -60,7 +60,9 @@ export class AuthService {
   getCommentsByUserId(userId: string): Observable<Object> {
     return this.http.get(`${this.apiUrl}/usercomments/${userId}`);
   }
-
+  editComment(edit: {commentId:string,userId:string,content:string}):Observable<any> {
+    return this.http.patch(`${this.apiUrl}/updatecomment`, edit);
+  }
 
   saveToken(token: string): void {
     localStorage.setItem('token', token);

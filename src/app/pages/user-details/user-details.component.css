@@ -225,16 +225,90 @@ h1 {
 }
 
 /* Daha Fazla düğmesi */
-.more-button {
+.comment-card .more-button {
   color: #FFD700;
   background: none;
   border: none;
   font-size: 14px;
   cursor: pointer;
-  text-align: left;
-  margin-top: 5px;
-  padding: 0;
+  padding: 5px 10px; /* Düğme çevresinde boşluk */
+  border-radius: 5px;
   font-weight: bold;
+  transition: all 0.2s ease;
+}
+.comment-card .edit-button {
+  background-color: #FFD700; /* Altın sarısı arka plan */
+  color: #333; /* Siyah metin */
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px; /* Hafif yuvarlatılmış kenarlar */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.comment-card .edit-button:hover {
+  background-color: #FFC300; /* Daha açık bir sarı ton */
+  color: #000; /* Daha koyu bir metin rengi */
+}
+
+/* Textarea için düzenleme */
+.comment-card textarea {
+  width: 99%; /* Genişlik biraz azaltıldı */
+  height: 60px; /* Textarea yüksekliği sabitlendi */
+  padding: 8px; /* Daha az iç boşluk */
+  border-radius: 5px; /* Hafif yuvarlatılmış köşeler */
+  border: 1px solid #FFD700;
+  background-color: #333;
+  color: white;
+  font-size: 14px;
+  resize: none; /* Yeniden boyutlandırmayı devre dışı bırakır */
+  margin-top: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Hafif gölge */
+  transition: border-color 0.3s ease; /* Border hover animasyonu */
+}
+
+.comment-card textarea:focus {
+  border-color: #FFC300; /* Odaklandığında daha açık sarı border */
+  outline: none; /* Varsayılan odak çerçevesini kaldır */
+}
+.button-container {
+  display: flex; /* Yan yana dizmek için */
+  justify-content: flex-end; /* Butonları en sağa hizalar */
+  gap: 10px; /* Butonlar arasına boşluk bırakır */
+  margin-top: 10px; /* Üstten biraz boşluk */
+}
+
+
+/* Kaydet ve İptal butonları */
+.comment-card .save-button,
+.comment-card .cancel-button {
+  padding: 5px 10px; /* Daha az iç boşluk */
+  font-size: 14px; /* Yazı boyutu düzenle butonuyla aynı */
+  font-weight: bold; /* Kalın yazı */
+  border: 2px solid #333; /* Çerçeve rengi #333 */
+  border-radius: 5px; /* Yuvarlatılmış kenarlar */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Hover animasyonu */
+  height: 30px; /* Düğme yüksekliği sabit */
+  width: 100px; /* Sabit genişlik */
+  background-color: #FFC300; /* Sarı arka plan */
+  color: #333; /* Yazı rengi */
+  display: inline-flex; /* Yan yana düzen için */
+  justify-content: center; /* Yazıyı yatay ortala */
+  align-items: center; /* Yazıyı dikey ortala */
+}
+
+
+/* Düzenleme modundaki daha fazla düğmesini gizle */
+.comment-card.editing .more-button {
+  display: none;
+}
+
+/* Düzenleme sırasında daha belirgin çerçeve */
+.comment-card.editing {
+  border: 2px dashed #FFD700; /* Düzenleme modunda çerçeve */
 }
 
 

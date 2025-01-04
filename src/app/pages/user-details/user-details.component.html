@@ -25,11 +25,24 @@
 <div *ngIf="comments.length > 0; else noComments">
   <div class="comments-container">
     <div class="comment-card" *ngFor="let comment of comments">
-      <h3>Yorum: {{ comment.content }}</h3>
-      <p>Film: {{ comment.filmName }}</p>
-      <small>Tarih: {{ comment.publishedDate | date:'short' }}</small>
-      <button class="more-button" *ngIf="!comment.expanded" (click)="toggleExpand(comment)">Daha Fazla</button>
-      <button class="more-button" *ngIf="comment.expanded" (click)="toggleExpand(comment)">Daha Az</button>
+      <!-- Düzenleme modu kapalıysa yorum ve bilgiler -->
+      <div *ngIf="!comment.isEditing; else editMode">
+        <h3>Yorum: {{ comment.content }}</h3>
+        <p>Film: {{ comment.filmName }}</p>
+        <small>Tarih: {{ comment.publishedDate | date: 'short' }}</small>
+        <button class="more-button" *ngIf="!comment.expanded" (click)="toggleExpand(comment)">Daha Fazla</button>
+        <button class="more-button" *ngIf="comment.expanded" (click)="toggleExpand(comment)">Daha Az</button>
+        <button class="edit-button" (click)="enableEditComment(comment)">Düzenle</button>
+      </div>
+
+      <!-- Düzenleme modu açıksa input alanı -->
+      <ng-template #editMode>
+        <textarea [(ngModel)]="comment.newContent" rows="3"></textarea>
+        <div class="button-container">
+          <button class="save-button" (click)="saveComment(comment)">Kaydet</button>
+          <button class="cancel-button" (click)="cancelEditComment(comment)">İptal</button>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>

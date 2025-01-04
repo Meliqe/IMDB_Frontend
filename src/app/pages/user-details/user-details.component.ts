@@ -18,6 +18,9 @@ export class UserDetailsComponent implements OnInit {
   updateUserSurname: string = '';
   updateUserPhone: string = '';
   comments: any = [];
+  comment :any;
+  content:string='';
+  editingComment: any = null; // Şu anda düzenlenen yorum
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -51,6 +54,19 @@ export class UserDetailsComponent implements OnInit {
     comment.expanded = !comment.expanded; // Genişletme/daraltma işlemi
   }
 
+  showUserComments(){
+    const userId = this.currentUser.id;
+    this.authService.getCommentsByUserId(userId).subscribe({
+      next:(response) => {
+        console.log(response);
+        this.comments=response;
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
+  }
+
   updateUser(): void {
     const updatedUser = {
       id: this.currentUser.id,
@@ -74,16 +90,41 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
-  showUserComments(){
-    const userId = this.currentUser.id;
-    this.authService.getCommentsByUserId(userId).subscribe({
-      next:(response) => {
-        console.log(response);
-        this.comments=response;
-      },
-      error:(err)=>{
-        console.log(err);
-      }
-    })
+  enableEditComment(comment: any): void {
+    comment.isEditing = true; // Düzenleme modunu aç
+    this.editingComment = comment; // Şu anda düzenlenen yorumu ayarla
   }
+
+  saveComment(comment: any): void {
+    if (!comment.newContent) {
+      alert('Yorum içeriği boş olamaz!');
+      return;
+    }
+
+    const editRequest = {
+      commentId: comment.commentId,
+      userId: this.currentUser.id,
+      content: comment.newContent,
+    };
+
+    this.authService.editComment(editRequest).subscribe({
+      next: (updatedComment) => {
+        comment.content = updatedComment.content; // Güncellenen içeriği ayarla
+        comment.isEditing = false; // Düzenleme modunu kapat
+        this.editingComment = null;
+        alert('Yorum başarıyla güncellendi!');
+      },
+      error: (err) => {
+        console.error('Yorum güncellenirken hata oluştu:', err);
+        alert('Yorum güncellenemedi.');
+      },
+    });
+  }
+
+  cancelEditComment(comment: any): void {
+    comment.isEditing = false; // Düzenleme modunu kapat
+    comment.newContent = comment.content; // İçeriği eski haline getir
+    this.editingComment = null;
+  }
+
 }

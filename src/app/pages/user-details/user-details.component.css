@@ -167,6 +167,77 @@ h1 {
   color: white;
 }
 
+/* Yorumları kapsayan container */
+.comments-container {
+  display: flex;
+  flex-direction: column; /* Yorumları alt alta yerleştirir */
+  gap: 20px; /* Yorum kartları arasında boşluk */
+  padding: 20px; /* Kenarlardan içeriye boşluk */
+}
+
+/* Her bir yorum kartı */
+.comment-card {
+  background-color: #444;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  color: white;
+  width: 100%; /* Genişliği %100 yaparak ekranı kaplamasını sağlıyoruz */
+  max-width: 1300px; /* Maksimum genişlik (örneğin 900px) */
+  margin: 0 auto; /* Ortalamak için */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+
+/* Başlık ve metin */
+.comment-card h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFD700; /* Altın sarısı renk */
+}
+
+.comment-card p {
+  font-size: 14px;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  max-height: 3.6em; /* Üç satır sınırı */
+  overflow: hidden; /* Taşmaları gizler */
+  text-overflow: ellipsis; /* Metni "..." ile kısaltır */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Satır sınırı */
+  -webkit-box-orient: vertical;
+  cursor: pointer; /* Tıklanabilirlik sağlar */
+  transition: all 0.3s ease-in-out; /* Animasyon efekti */
+}
+
+.comment-card p.expanded {
+  max-height: none; /* Tüm metni gösterir */
+  overflow: visible;
+  text-overflow: unset;
+}
+
+.comment-card small {
+  font-size: 12px;
+  color: #999; /* Daha açık bir gri */
+}
+
+/* Daha Fazla düğmesi */
+.more-button {
+  color: #FFD700;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  margin-top: 5px;
+  padding: 0;
+  font-weight: bold;
+}
+
+
 
 
 

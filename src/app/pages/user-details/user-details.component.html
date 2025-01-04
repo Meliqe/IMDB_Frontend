@@ -22,6 +22,22 @@
     </div>
   </div>
 </div>
+<div *ngIf="comments.length > 0; else noComments">
+  <div class="comments-container">
+    <div class="comment-card" *ngFor="let comment of comments">
+      <h3>Yorum: {{ comment.content }}</h3>
+      <p>Film: {{ comment.filmName }}</p>
+      <small>Tarih: {{ comment.publishedDate | date:'short' }}</small>
+      <button class="more-button" *ngIf="!comment.expanded" (click)="toggleExpand(comment)">Daha Fazla</button>
+      <button class="more-button" *ngIf="comment.expanded" (click)="toggleExpand(comment)">Daha Az</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #noComments>
+  <p>Herhangi bir filme yorum yapılmadı.</p>
+</ng-template>
+
 <h1>WatchList</h1>
 <div class="watchlist">
   Watch list
@@ -33,6 +49,10 @@
 
 <ng-template #noUser>
   <p>No user information available. Please log in.</p>
+</ng-template>
+
+<ng-template #noComments>
+  <p>Herhangi bir filme yorum yapılmadı.</p>
 </ng-template>
 <!-- Modal -->
 <!-- Modal -->

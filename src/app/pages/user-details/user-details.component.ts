@@ -14,10 +14,10 @@ import { FormsModule } from '@angular/forms';
 export class UserDetailsComponent implements OnInit {
   currentUser: any = null;
   isModalOpen: boolean = false;
-
   updateUserName: string = '';
   updateUserSurname: string = '';
   updateUserPhone: string = '';
+  comments: any = [];
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -30,6 +30,7 @@ export class UserDetailsComponent implements OnInit {
       this.updateUserSurname = this.currentUser.surname;
       this.updateUserPhone = this.currentUser.phone;
     }
+    this.showUserComments();
   }
 
   logout(): void {
@@ -44,6 +45,10 @@ export class UserDetailsComponent implements OnInit {
 
   closeModal(): void {
     this.isModalOpen = false;
+  }
+
+  toggleExpand(comment: any) {
+    comment.expanded = !comment.expanded; // Genişletme/daraltma işlemi
   }
 
   updateUser(): void {
@@ -67,5 +72,18 @@ export class UserDetailsComponent implements OnInit {
         alert('Profil güncellenemedi, lütfen tekrar deneyin.');
       },
     });
+  }
+
+  showUserComments(){
+    const userId = this.currentUser.id;
+    this.authService.getCommentsByUserId(userId).subscribe({
+      next:(response) => {
+        console.log(response);
+        this.comments=response;
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
   }
 }

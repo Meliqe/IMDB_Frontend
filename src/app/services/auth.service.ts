@@ -54,11 +54,12 @@ export class AuthService {
     }
     return null;
   }
-
   updateUser(user: { id: string; name: string; surname: string; phone: string }): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/updateuser`, user);
   }
-
+  getCommentsByUserId(userId: string): Observable<Object> {
+    return this.http.get(`${this.apiUrl}/usercomments/${userId}`);
+  }
 
 
   saveToken(token: string): void {

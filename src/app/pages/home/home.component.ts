@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
     this.getGenres();
     this.getActors();
     this.currentUser = this.authService.getCurrentUser();
+    console.log(this.currentUser);
   }
 
   getFilms(): void {

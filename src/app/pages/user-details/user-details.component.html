@@ -11,14 +11,14 @@
   <img src="assets/cinema-user.jpg">
   <div class="user-box">
     <div *ngIf="currentUser; else noUser">
-      <h1>{{ currentUser.name + ' ' + currentUser.surname}}</h1>
+      <h1>{{ currentUser.name + ' ' + currentUser.surname }}</h1>
       <div class="info">{{ currentUser.email }}</div>
       <div class="info">{{ currentUser.phone }}</div>
-      <div class="info">{{currentUser.createTime | date: 'MMMM yyyy'}}</div>
+      <div class="info">{{ currentUser.createTime | date: 'MMMM yyyy' }}</div>
     </div>
     <div class="buttons">
       <button (click)="logout()">Logout</button>
-      <button (click)="editProfile()">Edit Profile</button>
+      <button (click)="openModal()">Edit Profile</button>
     </div>
   </div>
 </div>
@@ -34,5 +34,50 @@
 <ng-template #noUser>
   <p>No user information available. Please log in.</p>
 </ng-template>
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="isModalOpen">
+  <div class="modal-content">
+    <h2>Profil Güncelle</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">Ad:</label>
+        <input
+          id="name"
+          [(ngModel)]="updateUserName"
+          name="updateUserName"
+          type="text"
+          placeholder="Adınızı giriniz"
+        />
+      </div>
+      <div class="form-group">
+        <label for="surname">Soyad:</label>
+        <input
+          id="surname"
+          [(ngModel)]="updateUserSurname"
+          name="updateUserSurname"
+          type="text"
+          placeholder="Soyadınızı giriniz"
+        />
+      </div>
+      <div class="form-group">
+        <label for="phone">Telefon:</label>
+        <input
+          id="phone"
+          [(ngModel)]="updateUserPhone"
+          name="updateUserPhone"
+          type="text"
+          placeholder="Telefon numaranızı giriniz"
+        />
+      </div>
+      <div class="modal-buttons">
+        <button type="button" (click)="closeModal()">İptal</button>
+        <button type="button" (click)="updateUser()">Güncelle</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
 </body>
 </html>

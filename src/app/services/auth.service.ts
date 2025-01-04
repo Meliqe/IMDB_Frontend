@@ -27,14 +27,12 @@ export class AuthService {
   login(credentials: { email:string; password: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/giris`, credentials);
   }
-
   register(user: { name: string; surname:string; email:string; password: string ; phone:string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/kayit`, user);
   }
   getUserDetails(userid: string): Observable<Object> {
     return this.http.get(`${this.apiUrl}/userdetails/${userid}`);
   }
-
   getUserIdFromToken(): string | null {
     const token = localStorage.getItem('token');
     if (token) {
@@ -56,6 +54,12 @@ export class AuthService {
     }
     return null;
   }
+
+  updateUser(user: { id: string; name: string; surname: string; phone: string }): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/updateuser`, user);
+  }
+
+
 
   saveToken(token: string): void {
     localStorage.setItem('token', token);

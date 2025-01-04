@@ -5,7 +5,7 @@ import {inject} from '@angular/core';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   const authService = inject(AuthService); // o yüzden bu şekilde enjecte etmeliyiz
-  const protectedEndpoints = ['/userdetails','/addcomment','updateuser','usercomments'];
+  const protectedEndpoints = ['/userdetails','/addcomment','updateuser','usercomments','updatecomment'];
 
   //eğer istek korunan endpoinete yapılmıyorsa direkt gönderiyoruz
   //bu korunan endpointe istek yapmıyorsak

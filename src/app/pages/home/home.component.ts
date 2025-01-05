@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   tempRating: number = 0;
   currentUser: any = null;
 
+
   constructor(private filmService: FilmService, private router: Router , private authService:AuthService) { }
   //routerı kullanmak istiyorsak enjecte etmemiz gerek
 
@@ -140,24 +141,42 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  addOrUpdateRate(){
+    const userid = this.currentUser.id;
+    if (userid){
+      const rate ={
+        userid: this.currentUser.id,
+        filmid: this.selectedFilm.filmId,
+        score:this.rating
+      };
+      this.authService.addOrdUpdateRate(rate).subscribe({
+        next: (result) => {
+          console.log("Güncellenen veya eklenen puan:", result);
+          this.resetStars(); // Yıldızları sıfırla
+          this.closeModal(); // Modalı kapat
+          alert("puan başarıyla verildi");
+        },
+        error:(err)=>{
+          console.error("puan verme işlemi başarısız",err);
+          alert("Puanlama kaydedilemedi. Lütfen tekrar deneyin.");        }
+      })
+    }
+    else {
+      alert("lütfen giriş yapın");
+      this.router.navigate(['/login']);
+    }
+  }
+
+
   hoverRating(tempRating: number): void {
     this.tempRating = tempRating;
   }
-
   rateFilm(value: number): void {
     this.rating = value; // Kalıcı seçim
     console.log(`Seçilen puan: ${value}`);
   }
-
   getStarClass(index: number): string {
     return index < (this.tempRating || this.rating) ? 'active' : '';
-  }
-
-
-  submitRating(): void {
-    console.log(`${this.selectedFilm.filmName} için verilen puan: ${this.rating}`);
-    this.resetStars(); // Yıldızları sıfırla
-    this.closeModal(); // Modalı kapat
   }
   resetStars(): void {
     this.rating = 0;
@@ -166,7 +185,6 @@ export class HomeComponent implements OnInit {
   openModal(film: any): void {
     this.selectedFilm = film;
   }
-
   closeModal(): void {
     this.selectedFilm = null;
   }

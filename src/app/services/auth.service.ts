@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import internal from 'node:stream';
 
 @Injectable({ //DI sistemi tarafından kullanılmasını sağlar
   providedIn: 'root' //uygulamanın root modülüne otoatik sağlanır
@@ -63,7 +64,9 @@ export class AuthService {
   editComment(edit: {commentId:string,userId:string,content:string}):Observable<any> {
     return this.http.patch(`${this.apiUrl}/updatecomment`, edit);
   }
-
+  addOrdUpdateRate(rate:{userid:string,filmid:string,score:number}):Observable<any> {
+    return this.http.put(`${this.apiUrl}/addorupdaterate`, rate);
+  }
   saveToken(token: string): void {
     localStorage.setItem('token', token);
   }

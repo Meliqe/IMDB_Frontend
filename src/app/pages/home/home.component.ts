@@ -141,6 +141,11 @@ export class HomeComponent implements OnInit {
   }
 
   addOrUpdateRate(){
+    if (!this.currentUser) {
+      alert("Lütfen giriş yapın");
+      this.router.navigate(['/login']);
+      return;
+    }
     const userid = this.currentUser.id;
     if (userid){
       const rate ={

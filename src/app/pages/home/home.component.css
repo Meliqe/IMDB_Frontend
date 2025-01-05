@@ -249,7 +249,7 @@ body {
   line-height: 1;
 }
 
-.rating-summary #average-rating {
+.rating-summary #rating {
   color: #fff;
   margin-right: 20px;
   font-size: 14px;

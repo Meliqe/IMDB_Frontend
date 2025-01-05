@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   rating: number = 0;
   tempRating: number = 0;
   currentUser: any = null;
-
+  score: number = 0;
 
   constructor(private filmService: FilmService, private router: Router , private authService:AuthService) { }
   //routerı kullanmak istiyorsak enjecte etmemiz gerek
@@ -41,7 +41,6 @@ export class HomeComponent implements OnInit {
     this.filmService.getAllFilms().subscribe(
       (data) => {
         this.films = data;
-        //console.log(data);
         this.films.forEach((film: any) => {
           if (film.posterPath) {
             film.posterPath = `${this.PathPrefix}${film.posterPath}`;

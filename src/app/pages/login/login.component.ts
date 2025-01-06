@@ -30,22 +30,35 @@ export class LoginComponent {
         if (response.token) {
           console.log("Giriş Başarılı:" + response.token);
           this.authService.saveToken(response.token);
-
-          const userId = this.authService.getUserIdFromToken();
-          if (userId) {
-            this.authService.getUserDetails(userId).subscribe({
-              next: (userDetails) => {
-                console.log('Kullanıcı bilgileri:', userDetails);
-                this.authService.setCurrentUser(userDetails);
-                this.router.navigate(['/home']);
-              },
-              error: (err) => {
-                console.error('Kullanıcı bilgileri alınırken hata:', err);
-              },
-            });
-          } else {
-            this.errorMessage = 'Token süresi dolmuş, lütfen tekrar giriş yapın.';
-            this.router.navigate(['/login']);
+          const role = this.authService.getRoleFromToken(response.token);
+          console.log('Role from Token:', role);
+          if(role){
+            if (role==='admin'){
+              console.log('Admin olarak giriş yapıldı.');
+              this.router.navigate(['/admin-dashboard']);
+            }
+            else if(role==='user'){
+              const userId = this.authService.getUserIdFromToken();
+              if (userId) {
+                this.authService.getUserDetails(userId).subscribe({
+                  next: (userDetails) => {
+                    console.log('Kullanıcı bilgileri:', userDetails);
+                    this.authService.setCurrentUser(userDetails);
+                    this.router.navigate(['/home']);
+                  },
+                  error: (err) => {
+                    console.error('Kullanıcı bilgileri alınırken hata:', err);
+                  },
+                });
+              } else {
+                this.errorMessage = 'Token süresi dolmuş, lütfen tekrar giriş yapın.';
+                this.router.navigate(['/login']);
+              }
+            }
+            else {
+              console.error('Bilinmeyen rol:', role);
+              this.router.navigate(['/login']); // Yetkisiz erişim
+            }
           }
         }
       },

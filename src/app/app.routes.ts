@@ -7,6 +7,7 @@ import {FilmDetailsComponent} from './pages/film-details/film-details.component'
 import {ActorDetailsComponent} from './pages/actor-details/actor-details.component';
 import {CategoryDetailsComponent} from './pages/category-details/category-details.component';
 import {UserDetailsComponent} from './pages/user-details/user-details.component';
+import {AdminDashboardComponent} from './adminpages/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   {
@@ -45,7 +46,9 @@ export const routes: Routes = [
   {
     path:"userdetails",
     component:UserDetailsComponent
+  },
+  {
+    path:"admin-dashboard",
+    component:AdminDashboardComponent,
   }
-
-
 ];

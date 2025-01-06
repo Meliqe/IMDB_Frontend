@@ -55,6 +55,32 @@ export class AuthService {
     }
     return null;
   }
+
+  getRoleFromToken(token:string): string | null {
+    if (token) {
+      try {
+        const tokenParts = token.split('.');
+        const payload = JSON.parse(atob(tokenParts[1]));
+
+        if (payload.exp && Date.now() >= payload.exp * 1000) {
+          console.error('Token süresi dolmuş.');
+          localStorage.removeItem('token');
+          return null;
+        }
+
+        const roleKey = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
+        const role = payload[roleKey];
+        console.log('Role from Token:', role);
+
+        return role || null;
+      } catch (error) {
+        console.error('Token çözümlenirken bir hata oluştu:', error);
+        return null;
+      }
+    }
+    return null;
+  }
+
   updateUser(user: { id: string; name: string; surname: string; phone: string }): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/updateuser`, user);
   }

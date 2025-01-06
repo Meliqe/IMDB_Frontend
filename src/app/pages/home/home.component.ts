@@ -36,6 +36,20 @@ export class HomeComponent implements OnInit {
     this.getActors();
     this.currentUser = this.authService.getCurrentUser();
     console.log(this.currentUser);
+    this.authService.getUserWatchList(this.currentUser.id).subscribe({
+      next: (watchlist:any[]) => {
+        console.log(watchlist);
+        this.userWatchlist = [];
+        watchlist.forEach((item:any) => {
+          this.userWatchlist.push(item.filmId);
+        });
+        console.log("User Watchlist:", this.userWatchlist);
+      },
+      error: (err) => {
+        console.error("Watchlist alınamadı:", err);
+        alert("Watchlist alınamadı. Lütfen tekrar deneyin.");
+      }
+    });
   }
 
   getFilms(): void {

@@ -43,15 +43,6 @@ export class LoginComponent {
                 console.error('Kullanıcı bilgileri alınırken hata:', err);
               },
             });
-            this.authService.getUserWatchList(userId).subscribe({
-              next:(userList)=>{
-                console.log(userList);
-                this.authService.setCurrentList(userList);
-              },
-              error: (err) => {
-                console.error("kullanıcı film listesini alırken hata!!")
-              }
-            })
           } else {
             this.errorMessage = 'Token süresi dolmuş, lütfen tekrar giriş yapın.';
             this.router.navigate(['/login']);

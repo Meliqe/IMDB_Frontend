@@ -24,16 +24,6 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
 
-  setCurrentList(userList: any): void {
-    localStorage.setItem('currentUser', JSON.stringify(userList));
-  }
-  getCurrentList(): any {
-    const userList = localStorage.getItem('currentList');
-    return userList ? JSON.parse(userList) : null;
-  }
-  clearCurrentList(): void {
-    localStorage.removeItem('currentList');
-  }
 
   login(credentials: { email:string; password: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/giris`, credentials);
@@ -77,7 +67,7 @@ export class AuthService {
   addOrdUpdateRate(rate:{userid:string,filmid:string,score:number}):Observable<any> {
     return this.http.put(`${this.apiUrl}/addorupdaterate`, rate);
   }
-  getUserWatchList(userid:string):Observable<Object> {
+  getUserWatchList(userid:string):Observable<any> {
     return this.http.get(`${this.apiUrl}/userlist/${userid}`);
   }
   saveToken(token: string): void {

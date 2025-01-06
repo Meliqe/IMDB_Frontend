@@ -57,11 +57,13 @@ export class FilmDetailsComponent {
     console.log(comment);
     console.log(this.currentUser);
     this.filmService.addComment(comment).subscribe({
-      next:()=>{
+      next:(data)=>{
+        console.log(data);
         console.log("yorum başarıyla eklendi");
         alert("yorum başarıyla eklendi");
+        this.comments.push(data);
         this.content='';
-      },
+      }, //addcomment yorumu dönsün  push kısmına
       error:()=>{
         console.error("yorum eklenirken hata!!");
         alert("Lütfen giriş yapın!!!");

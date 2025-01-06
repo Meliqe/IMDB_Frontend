@@ -24,6 +24,16 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
 
+  setCurrentList(userList: any): void {
+    localStorage.setItem('currentUser', JSON.stringify(userList));
+  }
+  getCurrentList(): any {
+    const userList = localStorage.getItem('currentList');
+    return userList ? JSON.parse(userList) : null;
+  }
+  clearCurrentList(): void {
+    localStorage.removeItem('currentList');
+  }
 
   login(credentials: { email:string; password: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/giris`, credentials);

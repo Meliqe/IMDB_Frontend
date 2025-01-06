@@ -314,7 +314,7 @@ h1 {
   display: flex; /* Kartları yatayda sıralamak için */
   flex-wrap: wrap; /* Kartlar ekranı taşarsa alt satıra geçmesini sağlar */
   justify-content: flex-start; /* Kartları yatayda ortalar */
-  gap: 20px; /* Kartlar arasına boşluk ekler */
+  gap: 30px; /* Kartlar arasına boşluk ekler */
   padding: 0px 100px; }
 
 .watchlist-card {
@@ -340,7 +340,17 @@ h1 {
   text-align: center; /* Metni ortalar */
   margin: 0; /* Varsayılan boşlukları sıfırlar */
 }
-
+.empty-message {
+  width: 100%; /* Mesajın container genişliğini kaplamasını sağlar */
+  text-align: center; /* Metni ortalar */
+  font-size: 24px; /* Yazı boyutu */
+  color: #FFD700; /* Altın sarısı renk */
+  font-weight: bold; /* Kalın yazı */
+  background-color: #444; /* Arka plan rengi */
+  padding: 20px; /* İçerik ile kenarlar arasına boşluk ekler */
+  border-radius: 10px; /* Köşeleri yuvarlatır */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Hafif bir gölge ekler */
+}
 
 
 

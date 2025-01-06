@@ -25,6 +25,10 @@
 
 <h1>WatchList</h1>
 <div class="watchlist-container">
+  <!-- Liste boşsa mesaj göster -->
+  <div *ngIf="userList.length === 0" class="empty-message">
+    <h2>Listeniz boş</h2>
+  </div>
   <div class="watchlist-card" *ngFor="let film of userList">
     <img src="{{film.posterPath}}" alt="Film Poster">
     <h2>{{film.filmName}}</h2>

@@ -22,6 +22,16 @@
     </div>
   </div>
 </div>
+
+<h1>WatchList</h1>
+<div class="watchlist-container">
+  <div class="watchlist-card" *ngFor="let film of userList">
+    <img src="{{film.posterPath}}" alt="Film Poster">
+    <h2>{{film.filmName}}</h2>
+  </div>
+</div>
+
+<h1>Yapılan Yorumlar</h1>
 <div *ngIf="comments.length > 0; else noComments">
   <div class="comments-container">
     <div class="comment-card" *ngFor="let comment of comments">
@@ -50,15 +60,6 @@
 <ng-template #noComments>
   <p>Herhangi bir filme yorum yapılmadı.</p>
 </ng-template>
-
-<h1>WatchList</h1>
-<div class="watchlist">
-  Watch list
-</div>
-<h1>Rating</h1>
-<div class="rated">
-  Rated
-</div>
 
 <ng-template #noUser>
   <p>No user information available. Please log in.</p>

@@ -310,6 +310,36 @@ h1 {
 .comment-card.editing {
   border: 2px dashed #FFD700; /* Düzenleme modunda çerçeve */
 }
+.watchlist-container {
+  display: flex; /* Kartları yatayda sıralamak için */
+  flex-wrap: wrap; /* Kartlar ekranı taşarsa alt satıra geçmesini sağlar */
+  justify-content: flex-start; /* Kartları yatayda ortalar */
+  gap: 20px; /* Kartlar arasına boşluk ekler */
+  padding: 0px 100px; }
+
+.watchlist-card {
+  display: flex;
+  flex-direction: column; /* Poster ve film adını dikey sıralar */
+  align-items: center; /* İçeriği yatayda ortalar */
+  background-color: #333; /* Kartın arka plan rengi */
+  padding: 15px; /* Kartın iç boşluğu */
+  border-radius: 10px; /* Kartın köşelerini yuvarlatır */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Hafif bir gölge ekler */
+  width: 200px; /* Kart genişliği */
+}
+
+.watchlist-card img {
+  width: 100%; /* Poster genişliğini kart genişliğine uyarlar */
+  border-radius: 5px; /* Poster köşelerini yuvarlatır */
+  margin-bottom: 10px; /* Poster ile film adı arasında boşluk bırakır */
+}
+
+.watchlist-card h2 {
+  font-size: 18px; /* Film adı yazı boyutu */
+  color: #FFD700; /* Film adı rengi (altın sarısı) */
+  text-align: center; /* Metni ortalar */
+  margin: 0; /* Varsayılan boşlukları sıfırlar */
+}
 
 
 

@@ -19,10 +19,10 @@ export class UserDetailsComponent implements OnInit {
   updateUserSurname: string = '';
   updateUserPhone: string = '';
   comments: any = [];
-  comment :any;
+  PathPrefix: string = 'data:image/jpeg;base64,';
   content:string='';
   editingComment: any = null; // Şu anda düzenlenen yorum
-
+  userList: any = [];
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -35,6 +35,7 @@ export class UserDetailsComponent implements OnInit {
       this.updateUserPhone = this.currentUser.phone;
     }
     this.showUserComments();
+    this.getUserWatchList();
   }
 
   logout(): void {
@@ -128,4 +129,19 @@ export class UserDetailsComponent implements OnInit {
     this.editingComment = null;
   }
 
+  getUserWatchList(){
+    const userId = this.currentUser.id;
+    this.authService.getUserWatchList(userId).subscribe({
+      next:(data )=> {
+        console.log(data);
+        this.userList=data;
+        this.userList.forEach((film: any) => {
+          film.posterPath = `${this.PathPrefix}${film.posterPath}`;
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
 }

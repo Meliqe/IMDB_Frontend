@@ -67,6 +67,9 @@ export class AuthService {
   addOrdUpdateRate(rate:{userid:string,filmid:string,score:number}):Observable<any> {
     return this.http.put(`${this.apiUrl}/addorupdaterate`, rate);
   }
+  getUserWatchList(userid:string):Observable<Object> {
+    return this.http.get(`${this.apiUrl}/userlist/${userid}`);
+  }
   saveToken(token: string): void {
     localStorage.setItem('token', token);
   }

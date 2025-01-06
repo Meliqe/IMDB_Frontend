@@ -34,4 +34,11 @@ export class FilmService {
   allCommentsByFilmId(filmId:string):Observable<Object> {
     return this.http.get(`${this.apiUrl}/allcommentsbyfilmid/${filmId}`);
   }
+  addFilmToList(listRequest:{userid:string,filmid:string}):Observable<Object> {
+    return this.http.post(`${this.apiUrl}/addfilmtolist`, listRequest);
+  }
+  removeFilmFromList(request: { userid: string, filmid: string }): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/removefilmfromlist`, { body: request });
+  }
+
 }

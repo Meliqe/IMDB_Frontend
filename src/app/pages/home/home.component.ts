@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   tempRating: number = 0;
   currentUser: any = null;
   score: number = 0;
+  userWatchlist: string[] = []; //film id lerini tutuyor o yüzden string
 
   constructor(private filmService: FilmService, private router: Router , private authService:AuthService) { }
   //routerı kullanmak istiyorsak enjecte etmemiz gerek
@@ -170,6 +171,51 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
+
+  toggleWatchlist(filmId: string): void {
+    if (!this.currentUser) {
+      alert("Lütfen giriş yapın.");
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    if (this.userWatchlist.includes(filmId)) {
+      // Film zaten listede, silme işlemi yapılacak
+      const request = {
+        userid: this.currentUser.id,
+        filmid: filmId
+      };
+
+      this.filmService.removeFilmFromList(request).subscribe({
+        next: (response: any) => {
+          //alert(response.message); // Backend'den gelen mesajı göster
+          this.userWatchlist = this.userWatchlist.filter(id => id !== filmId); // Listeden çıkar
+        },
+        error: (err) => {
+          console.error("Film silme hatası:", err);
+          alert("Film listeden silinemedi. Lütfen tekrar deneyin.");
+        }
+      });
+    } else {
+      // Film listede değil, ekleme işlemi yapılacak
+      const request = {
+        userid: this.currentUser.id,
+        filmid: filmId
+      };
+
+      this.filmService.addFilmToList(request).subscribe({
+        next: (response: any) => {
+          //alert(response.message); // Backend'den gelen mesajı göster
+          this.userWatchlist.push(filmId); // Listeye ekle
+        },
+        error: (err) => {
+          console.error("Film ekleme hatası:", err);
+          alert("Film listeye eklenemedi. Lütfen tekrar deneyin.");
+        }
+      });
+    }
+  }
+
 
 
   hoverRating(tempRating: number): void {

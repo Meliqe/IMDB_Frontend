@@ -63,7 +63,12 @@
           <span id="rating">{{film.rateAvg}}</span>
         </div>
         <h2>{{ film.filmName }}</h2>
-        <a href="#">+ Watchlist</a>
+        <!-- Dinamik Watchlist Butonu -->
+        <button
+          (click)="toggleWatchlist(film.filmId)"
+          [ngClass]="{'added': userWatchlist.includes(film.filmId)}">
+          {{ userWatchlist.includes(film.filmId) ? 'Film Eklendi' : '+ Watchlist' }}
+        </button>
         <b href="#">► Trailer</b>
       </div>
     </div>

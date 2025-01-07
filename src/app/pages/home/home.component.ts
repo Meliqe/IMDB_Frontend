@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
   rating: number = 0;
   tempRating: number = 0;
   currentUser: any = null;
-  score: number = 0;
   userWatchlist: string[] = []; //film id lerini tutuyor o yüzden string
 
   constructor(private filmService: FilmService, private router: Router , private authService:AuthService) { }
@@ -161,6 +160,7 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
+    console.log("tıklanılan filmin bilgileri:",this.selectedFilm)
     const userid = this.currentUser.id;
     if (userid){
       const rate ={
@@ -168,11 +168,14 @@ export class HomeComponent implements OnInit {
         filmid: this.selectedFilm.filmId,
         score:this.rating
       };
+      console.log("seçilen film :",this.selectedFilm);
       this.authService.addOrdUpdateRate(rate).subscribe({
         next: (result) => {
           console.log("Güncellenen veya eklenen puan:", result);
-          this.resetStars(); // Yıldızları sıfırla
-          this.closeModal(); // Modalı kapat
+          this.selectedFilm.rateAvg=result.rateAvg;
+          console.log("seçilen filmin ortaama puanı :",this.selectedFilm.rateAvg);
+          this.resetStars();
+          this.closeModal();
           alert("puan başarıyla verildi");
         },
         error:(err)=>{

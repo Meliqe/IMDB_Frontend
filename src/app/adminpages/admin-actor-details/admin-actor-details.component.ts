@@ -49,6 +49,22 @@ constructor(private adminService: AdminService,  private route: ActivatedRoute,p
     this.updatedActorDetails = {};
   }
   updateActorDetails() {
+    if (!this.updatedActorDetails.actorName || this.updatedActorDetails.actorName.trim() === '') {
+      alert('Oyuncu adı boş bırakılamaz!');
+      return;
+    }
+    if (!this.updatedActorDetails.biography || this.updatedActorDetails.biography.trim() === '') {
+      alert('Oyuncu biyografisi boş bırakılamaz!');
+      return;
+    }
+    if (!this.updatedActorDetails.birthDate) {
+      alert('Doğum tarihi boş bırakılamaz!');
+      return;
+    }
+    if (!this.updatedActorDetails.photoPath) {
+      alert('Bir fotoğraf seçmelisiniz!');
+      return;
+    }
     this.adminService.updateActor(this.updatedActorDetails).subscribe({
       next: (updatedActor) => {
         this.actorDetails={...this.actorDetails , ...this.updatedActorDetails};

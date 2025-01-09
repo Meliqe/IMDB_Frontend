@@ -132,6 +132,22 @@ export class AdminfilmdetailsComponent {
     this.updatedFilm = {};
   }
   updateFilm() {
+    if (!this.updatedFilm.filmName || this.updatedFilm.filmName.trim() === '') {
+      alert('Film ismi boş bırakılamaz!');
+      return;
+    }
+    if (!this.updatedFilm.filmDescription || this.updatedFilm.filmDescription.trim() === '') {
+      alert('Film açıklaması boş bırakılamaz!');
+      return;
+    }
+    if (!this.updatedFilm.filmDuration || this.updatedFilm.filmDuration <= 0) {
+      alert('Film süresi boş bırakılamaz ve sıfırdan büyük olmalıdır!');
+      return;
+    }
+    if (this.selectedGenres.length === 0) {
+      alert('En az bir tür seçmelisiniz!');
+      return;
+    }
     this.updatedFilm.genres = this.selectedGenres.map((genreName) => ({
       genreName, // Sadece tür adı gönderiliyor
     }));

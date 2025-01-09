@@ -57,14 +57,6 @@ constructor(private adminService: AdminService,  private route: ActivatedRoute,p
       alert('Oyuncu biyografisi boş bırakılamaz!');
       return;
     }
-    if (!this.updatedActorDetails.birthDate) {
-      alert('Doğum tarihi boş bırakılamaz!');
-      return;
-    }
-    if (!this.updatedActorDetails.photoPath) {
-      alert('Bir fotoğraf seçmelisiniz!');
-      return;
-    }
     this.adminService.updateActor(this.updatedActorDetails).subscribe({
       next: (updatedActor) => {
         this.actorDetails={...this.actorDetails , ...this.updatedActorDetails};
@@ -100,7 +92,7 @@ constructor(private adminService: AdminService,  private route: ActivatedRoute,p
       const reader = new FileReader();
       reader.onload = () => {
         this.updatedActorDetails.photoPath = reader.result as string; // Base64 verisini aktarıyoruz
-        console.log('Seçilen Fotoğraf (Base64):', this.updatedActorDetails.photoPath); // Kontrol için
+        //console.log('Seçilen Fotoğraf (Base64):', this.updatedActorDetails.photoPath); // Kontrol için
       };
       reader.readAsDataURL(file);
     }

@@ -9,6 +9,7 @@ import {CategoryDetailsComponent} from './pages/category-details/category-detail
 import {UserDetailsComponent} from './pages/user-details/user-details.component';
 import {adminGuard} from './guards/admin.guard';
 import {AdminDashboardComponent} from './adminpages/admin-dashboard/admin-dashboard.component';
+import {AdminfilmdetailsComponent} from './adminpages/adminfilmdetails/adminfilmdetails.component';
 
 export const routes: Routes = [
   {
@@ -52,5 +53,9 @@ export const routes: Routes = [
     path:"admin-dashboard",
     component:AdminDashboardComponent,
     canActivate: [adminGuard]
+  },
+  {
+    path:'adminfilmdetails/:id',
+    component:AdminfilmdetailsComponent
   }
 ];

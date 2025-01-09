@@ -19,7 +19,7 @@ export class AdminService {
     return this.http.delete<void>(`${this.apiUrl}/deletefilm/${filmId}`);
   }
   getFilmById(filmId:string):Observable<any> {
-    return this.http.get(`${this.apiUrl}/admingetfilmbyid/${filmId}`);
+    return this.http.get<any>(`${this.apiUrl}/admingetfilmbyid/${filmId}`);
   }
   updateFilm(film:{filmId:string, filmName:string,filmDesc:string,filmReleaseDate:Date,filmDuration:number,posterPath:string, genres:string[]}):Observable<any>{
     return this.http.put(`${this.apiUrl}/adminupdatefilm/${film.filmId}`, film);

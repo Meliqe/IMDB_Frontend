@@ -1,3 +1,35 @@
 body{
-  background-color: black ;
+  background-color: white ;
+}
+.search-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.film-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.film-item {
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.film-item:hover {
+  background-color: #f0f0f0;
 }

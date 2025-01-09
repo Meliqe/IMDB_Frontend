@@ -1,0 +1,25 @@
+<div *ngIf="filmDetails">
+  <h1>{{ filmDetails.filmName }}</h1>
+  <img [src]="'data:image/jpeg;base64,' + filmDetails.posterPath" alt="{{ filmDetails.filmName }}">
+  <p>{{ filmDetails.filmDesc }}</p>
+  <p>Çıkış Tarihi: {{ filmDetails.filmReleaseDate | date :'yyyy' }}</p>
+  <p>Süre: {{ filmDetails.filmDuration }} dakika</p>
+</div>
+
+<div *ngIf="filmDetails.genres">
+  <h3>Türler:</h3>
+  <ul>
+    <li *ngFor="let genre of filmDetails.genres">{{ genre.genreName }}</li>
+  </ul>
+</div>
+
+<div *ngIf="filmDetails.actors">
+  <h3>Oyuncular:</h3>
+  <ul>
+    <li *ngFor="let actor of filmDetails.actors">
+      <img [src]="'data:image/jpeg;base64,' + actor.photoPath" alt="{{ actor.actorName }}">
+      <p>{{ actor.actorName }}</p>
+    </li>
+  </ul>
+</div>
+

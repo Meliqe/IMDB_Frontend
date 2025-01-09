@@ -9,6 +9,26 @@
 </head>
 <body>
 <p>admin component</p>
+<div class="search-container">
+  <!-- Arama Kutusu -->
+  <input
+    type="text"
+    placeholder="Film ara..."
+    [(ngModel)]="searchQuery"
+    class="search-input"
+  />
+
+  <!-- Filmler Listesi -->
+  <ul class="film-list">
+    <li
+      *ngFor="let film of films | filterFilms: searchQuery"
+      (click)="goToFilmDetails(film.filmId)"
+      class="film-item"
+    >
+      {{ film.filmName }}
+    </li>
+  </ul>
+</div>
 </body>
 </html>
 

@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit {
         });
         this.filmsToShow=this.films.slice(0,6);
         this.loading = false;
+        console.log("home sayfasına gelen filmlerr:",this.films);
       },
       (error) => {
         console.error('API Hatası:', error);

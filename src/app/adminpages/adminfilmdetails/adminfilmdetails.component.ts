@@ -24,6 +24,8 @@ export class AdminfilmdetailsComponent {
   availableGenres: any[] = []; // API'den gelen tüm türler
   selectedGenres: string[] = []; // Kullanıcının seçtiği türler
   isGenreDropdownOpen: boolean = false; // Tür kutusunun açık/kapalı durumu
+  isActorModalOpen: boolean = false; // Modalın açık/kapalı durumu
+  newActor: any = {}; // Yeni oyuncu bilgileri
 
   constructor(
     private route: ActivatedRoute,
@@ -52,6 +54,39 @@ export class AdminfilmdetailsComponent {
       this.availableGenres = genres;
       console.log('Available Genres:', this.availableGenres);
     });
+  }
+
+  onActorPhotoSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.newActor.photoPath = reader.result as string; // Base64 verisini aktarıyoruz
+        console.log('Seçilen Fotoğraf (Base64):', this.newActor.photoPath); // Kontrol için
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  addActor() {
+    this.adminService.addActorToFilm(this.newActor).subscribe({
+      next: (response) => {
+        alert('Oyuncu başarıyla eklendi!');
+        this.actorsByFilmId.push(this.newActor); // Yeni oyuncuyu listeye ekle
+        this.closeActorModal(); // Modalı kapat
+      },
+      error: (err) => {
+        console.error('Oyuncu eklenirken bir hata oluştu:', err);
+        alert('Oyuncu eklenemedi. Lütfen tekrar deneyin.');
+      },
+    });
+  }
+  openActorModal() {
+    this.newActor = { filmId: this.filmDetails.filmId, actorName: '', actorPhoto: '', actorBio:'',actorBirthDate: '' }; // Yeni oyuncu bilgileri
+    this.isActorModalOpen = true;
+  }
+  closeActorModal() {
+    this.isActorModalOpen = false;
+    this.newActor = {};
   }
   onFileSelected(event: any) {
     const file = event.target.files[0]; // Kullanıcının seçtiği dosya

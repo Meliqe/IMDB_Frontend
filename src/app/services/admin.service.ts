@@ -12,7 +12,7 @@ export class AdminService {
   adminAddFilm(film:{filmName:string,filmDesc:string,filmReleaseDate:Date,filmDuration:number,posterPath:string, genres:string[]}): Observable<any> {
     return this.http.post(`${this.apiUrl}/addfilm`, film);
   }
-  addActorToFilm(actor:{filmId:string,actorName:string,actorPhoto:string,actorBirthDate:Date}): Observable<any> {
+  addActorToFilm(actor:{filmId:string,actorName:string,actorPhoto:string,actorBio:string,actorBirthDate:Date}): Observable<any> {
     return this.http.post(`${this.apiUrl}/addactor`, actor);
   }
   deleteFilm(filmId:string):Observable<void>{

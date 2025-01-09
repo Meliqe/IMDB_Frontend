@@ -26,6 +26,7 @@
 <div class="buttons">
   <button (click)="openUpdateModal()">Film Güncelle</button>
   <button (click)="deleteFilm()">Film Sil</button>
+  <button (click)="openActorModal()">Oyuncu Ekle</button>
 </div>
 <div class="modal" *ngIf="isUpdateModalOpen">
   <div class="modal-content">
@@ -81,6 +82,52 @@
       <div class="modal-buttons">
         <button type="submit">Güncelle</button>
         <button type="button" (click)="closeUpdateModal()">İptal</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal" *ngIf="isActorModalOpen">
+  <div class="modal-content">
+    <h2>Oyuncu Ekle</h2>
+    <form (ngSubmit)="addActor()">
+      <label for="actorName">Oyuncu Adı:</label>
+      <input
+        id="actorName"
+        [(ngModel)]="newActor.actorName"
+        name="actorName"
+        placeholder="Oyuncu adını girin"
+        required
+      />
+
+      <label for="actorPhoto">Oyuncu Fotoğrafı:</label>
+      <input
+        id="actorPhoto"
+        type="file"
+        accept="image/*"
+        (change)="onActorPhotoSelected($event)"
+        required
+      />
+      <label for="actorBio">Oyuncu Biyografisi:</label>
+      <textarea
+        id="actorBio"
+        [(ngModel)]="newActor.biography"
+        name="actorBio"
+        placeholder="Oyuncu biyografisini girin"
+        rows="4"
+        required
+      ></textarea>
+      <label for="actorBirthDate">Doğum Tarihi:</label>
+      <input
+        id="actorBirthDate"
+        type="date"
+        [(ngModel)]="newActor.birthDate"
+        name="actorBirthDate"
+        required
+      />
+
+      <div class="modal-buttons">
+        <button type="submit">Ekle</button>
+        <button type="button" (click)="closeActorModal()">İptal</button>
       </div>
     </form>
   </div>

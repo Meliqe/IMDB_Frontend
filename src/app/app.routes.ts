@@ -10,6 +10,7 @@ import {UserDetailsComponent} from './pages/user-details/user-details.component'
 import {adminGuard} from './guards/admin.guard';
 import {AdminDashboardComponent} from './adminpages/admin-dashboard/admin-dashboard.component';
 import {AdminfilmdetailsComponent} from './adminpages/adminfilmdetails/adminfilmdetails.component';
+import {AdminActorDetailsComponent} from './adminpages/admin-actor-details/admin-actor-details.component';
 
 export const routes: Routes = [
   {
@@ -57,5 +58,9 @@ export const routes: Routes = [
   {
     path:'adminfilmdetails/:id',
     component:AdminfilmdetailsComponent
+  },
+  {
+    path:'admin-actor-details/:id',
+    component: AdminActorDetailsComponent
   }
 ];

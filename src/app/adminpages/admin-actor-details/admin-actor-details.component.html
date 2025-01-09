@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<div *ngIf="actorDetails">
+  <h1>{{ actorDetails.actorName }}</h1>
+  <img [src]="'data:image/jpeg;base64,' + actorDetails.photoPath" alt="{{actorDetails.actorName }}">
+  <p>{{ actorDetails.biography}}</p>
+  <p>{{ actorDetails.birthDate | date}}</p>
+</div>
+<div class="buttons">
+  <button (click)="openUpdateModal()">Oyuncu Bilgilerini Güncelle</button>
+  <button (click)="deleteActor()">Oyuncuyu Sil</button>
+</div>
+<div class="modal" *ngIf="isModalOpen">
+  <div class="modal-content">
+    <h2>Oyuncu Bilgi Güncelle</h2>
+    <form (ngSubmit)="updateActorDetails()">
+      <label for="filmName">Oyuncu Adı:</label>
+      <input id="filmName" [(ngModel)]="updatedActorDetails.actorName" name="actorName" />
+
+      <label for="biography">Biyografi:</label>
+      <textarea
+        id="biography"
+        [(ngModel)]="updatedActorDetails.biography"
+        name="filmDesc"
+      ></textarea>
+
+      <label for="birthDate">Doğum Tarihi:</label>
+      <input
+        id="birthDate"
+        type="date"
+        [(ngModel)]="updatedActorDetails.birthDate"
+        name="birthDate"
+      />
+      <label for="photoPath">Oyuncu Fotoğrafı:</label>
+      <input
+        id="photoPath"
+        type="file"
+        accept="image/*"
+        (change)="onActorPhotoSelected($event)"
+      />
+      <div class="modal-buttons">
+        <button type="submit">Güncelle</button>
+        <button type="button" (click)="closeUpdateModal()">İptal</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -16,7 +16,9 @@ import {FilterPipePipe} from '../../pipes/filter-pipe.pipe';
 export class AdminDashboardComponent {
 
   films: any[] = [];
-  searchQuery: string ='';
+  actors:any[] = [];
+  searchFilmQuery: string ='';
+  searchActorQuery: string ='';
 
   constructor(private adminService: AdminService, private router: Router,private filmService: FilmService) {}
   ngOnInit() {
@@ -29,11 +31,22 @@ export class AdminDashboardComponent {
        console.log("Bilgiler yüklenmedi",err);
       }
     })
+    this.filmService.getAllActors().subscribe({
+      next: actors => {
+        this.actors = actors;
+        console.log(this.actors);
+      },
+      error: err => {
+        console.error("oyuncu bilgileri yüklenemedi",err)
+      }
+    })
   }
 
   goToFilmDetails(filmId: string): void {
     this.router.navigate([`/adminfilmdetails/${filmId}`]);
   }
-
+  goToActorDetails(id: string) {
+    this.router.navigate([`/admin-actor-details/${id}`]);
+  }
 
 }

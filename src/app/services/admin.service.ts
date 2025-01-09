@@ -30,4 +30,7 @@ export class AdminService {
   getActorsByFilmId(filmId:string):Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/actorlistbyfilmid/${filmId}`);
   }
+  updateActor(actor:{id:string,actorName:string,actorBioraphy:string,birthDate:Date,photoPath:string}):Observable<any> {
+    return this.http.put(`${this.apiUrl}/updateactorbyid/${actor.id}`, actor)
+  }
 }

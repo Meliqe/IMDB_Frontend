@@ -1,5 +1,5 @@
 import { Component ,OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AdminService} from '../../services/admin.service';
 import {CommonModule, DatePipe} from '@angular/common';
 
@@ -17,7 +17,8 @@ export class AdminfilmdetailsComponent {
   filmDetails: any = {};
   constructor(
     private route: ActivatedRoute,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private router: Router
   ) {}
 
   ngOnInit(){
@@ -32,4 +33,23 @@ export class AdminfilmdetailsComponent {
     }
   }
 
+  updateFilm(){
+
+  }
+  deleteFilm(){
+    const filmId = this.filmDetails.filmId;
+    if(confirm("Bu filmi silmek istediğinize emin misiniz?")){
+      this.adminService.deleteFilm(filmId).subscribe({
+        next:()=>{
+          console.log("ilgili film silindi");
+          alert('Film başarıyla silindi!');
+          this.router.navigate(['/admin-dashboard']);
+        },
+        error:(e)=>{
+          console.error("film silerken hata ",e);
+          alert('Film silinemedi. Lütfen tekrar deneyin.');
+        }
+      })
+    }
+  }
 }

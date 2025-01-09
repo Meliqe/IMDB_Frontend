@@ -19,6 +19,7 @@
     <li *ngFor="let actor of actorsByFilmId">
       <img [src]="'data:image/jpeg;base64,' + actor.photoPath" alt="{{ actor.actorName }}">
       <p>{{ actor.actorName }}</p>
+      <button (click)="deleteActor(actor.id)">Sil</button>
     </li>
   </ul>
 </div>

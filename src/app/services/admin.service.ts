@@ -15,6 +15,9 @@ export class AdminService {
   addActorToFilm(actor:{filmId:string,actorName:string,actorPhoto:string,actorBio:string,actorBirthDate:Date}): Observable<any> {
     return this.http.post(`${this.apiUrl}/addactor`, actor);
   }
+  deleteActor(filmId:string):Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/deleteactorbyid/${filmId}`);
+  }
   deleteFilm(filmId:string):Observable<void>{
     return this.http.delete<void>(`${this.apiUrl}/deletefilm/${filmId}`);
   }

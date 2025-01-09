@@ -165,4 +165,18 @@ export class AdminfilmdetailsComponent {
       })
     }
   }
+  deleteActor(actorId: string) {
+    if (confirm('Bu oyuncuyu silmek istediğinize emin misiniz?')) {
+      this.adminService.deleteActor(actorId).subscribe({
+        next: () => {
+          this.actorsByFilmId = this.actorsByFilmId.filter(actor => actor.id !== actorId);
+          alert('Oyuncu başarıyla silindi!');
+        },
+        error: (err) => {
+          console.error('Oyuncu silinirken bir hata oluştu:', err);
+          alert('Oyuncu silinemedi. Lütfen tekrar deneyin.');
+        }
+      });
+    }
+  }
 }

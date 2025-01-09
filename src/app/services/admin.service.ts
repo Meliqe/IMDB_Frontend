@@ -24,5 +24,7 @@ export class AdminService {
   updateFilm(film:{filmId:string, filmName:string,filmDesc:string,filmReleaseDate:Date,filmDuration:number,posterPath:string, genres:string[]}):Observable<any>{
     return this.http.put(`${this.apiUrl}/adminupdatefilm/${film.filmId}`, film);
   }
-
+  getActorsByFilmId(filmId:string):Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/actorlistbyfilmid/${filmId}`);
+  }
 }

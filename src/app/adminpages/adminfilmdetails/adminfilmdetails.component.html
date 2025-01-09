@@ -13,10 +13,10 @@
   </ul>
 </div>
 
-<div *ngIf="filmDetails.actors">
+<div *ngIf="actorsByFilmId">
   <h3>Oyuncular:</h3>
   <ul>
-    <li *ngFor="let actor of filmDetails.actors">
+    <li *ngFor="let actor of actorsByFilmId">
       <img [src]="'data:image/jpeg;base64,' + actor.photoPath" alt="{{ actor.actorName }}">
       <p>{{ actor.actorName }}</p>
     </li>

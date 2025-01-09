@@ -15,6 +15,7 @@ import {CommonModule, DatePipe} from '@angular/common';
 })
 export class AdminfilmdetailsComponent {
   filmDetails: any = {};
+  actorsByFilmId:any[]= [];
   constructor(
     private route: ActivatedRoute,
     private adminService: AdminService,
@@ -30,6 +31,12 @@ export class AdminfilmdetailsComponent {
         console.log('Film Details:', this.filmDetails);
         console.log('Poster Path:', this.filmDetails.posterPath);
       });
+    }
+    if(filmId){
+      this.adminService.getActorsByFilmId(filmId).subscribe((actor) => {
+        this.actorsByFilmId=actor;
+        console.log('gelen oyuncu bilgileri', this.actorsByFilmId);
+      })
     }
   }
 

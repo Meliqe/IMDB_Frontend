@@ -1,7 +1,7 @@
 <div *ngIf="filmDetails">
   <h1>{{ filmDetails.filmName }}</h1>
   <img [src]="'data:image/jpeg;base64,' + filmDetails.posterPath" alt="{{ filmDetails.filmName }}">
-  <p>{{ filmDetails.filmDesc }}</p>
+  <p>{{ filmDetails.filmDescription }}</p>
   <p>Çıkış Tarihi: {{ filmDetails.filmReleaseDate | date :'yyyy' }}</p>
   <p>Süre: {{ filmDetails.filmDuration }} dakika</p>
 </div>
@@ -24,7 +24,66 @@
 </div>
 
 <div class="buttons">
-  <button (click)="updateFilm()">Film Güncelle</button>
+  <button (click)="openUpdateModal()">Film Güncelle</button>
   <button (click)="deleteFilm()">Film Sil</button>
 </div>
+<div class="modal" *ngIf="isUpdateModalOpen">
+  <div class="modal-content">
+    <h2>Film Güncelle</h2>
+    <form (ngSubmit)="updateFilm()">
+      <label for="filmName">Film Adı:</label>
+      <input id="filmName" [(ngModel)]="updatedFilm.filmName" name="filmName" />
+
+      <label for="filmDesc">Açıklama:</label>
+      <textarea
+        id="filmDesc"
+        [(ngModel)]="updatedFilm.filmDescription"
+        name="filmDesc"
+      ></textarea>
+
+      <label for="filmReleaseDate">Çıkış Tarihi:</label>
+      <input
+        id="filmReleaseDate"
+        type="date"
+        [(ngModel)]="updatedFilm.filmReleaseDate"
+        name="filmReleaseDate"
+      />
+
+      <label for="filmDuration">Süre (dk):</label>
+      <input id="filmDuration" type="number" [(ngModel)]="updatedFilm.filmDuration" name="filmDuration" />
+
+      <label>Türler:</label>
+      <div class="dropdown">
+        <button type="button" (click)="toggleGenreDropdown()">Türleri Seç</button>
+        <div class="dropdown-content" *ngIf="isGenreDropdownOpen">
+          <label *ngFor="let genre of availableGenres">
+            <input
+              type="checkbox"
+              [value]="genre.genreName"
+              [checked]="selectedGenres.includes(genre.genreName)"
+              (change)="toggleGenreSelection(genre.genreName)"
+            />
+            {{ genre.genreName }}
+          </label>
+        </div>
+      </div>
+
+      <ul>
+        <li *ngFor="let genre of selectedGenres">{{ genre }}</li>
+      </ul>
+      <label for="posterPath">Film Posteri:</label>
+      <input
+        id="posterPath"
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+      />
+      <div class="modal-buttons">
+        <button type="submit">Güncelle</button>
+        <button type="button" (click)="closeUpdateModal()">İptal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 

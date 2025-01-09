@@ -13,8 +13,8 @@ export class FilmService {
   getAllFilms():Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/allfilms`); //post olsaydı 2 paramtere bekleyecekti
   }
-  getAllGenres():Observable<Object> {
-    return this.http.get(`${this.apiUrl}/allgenres`);
+  getAllGenres():Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/allgenres`);
   }
   getAllActors():Observable<Object> {
     return this.http.get(`${this.apiUrl}/allactors`);

@@ -1,4 +1,159 @@
-/* Modal genel görünümü */
+/* Genel Ayarlar */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f4f6f9;
+  color: #333;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Film Detayları */
+.film-details {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.film-details h1 {
+  font-size: 28px;
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.film-details img {
+  display: block;
+  max-width: 300px; /* Film posteri maksimum genişliği */
+  margin: 0 auto 20px;
+  border-radius: 10px; /* Film posteri yuvarlak köşeler */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.film-details p {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Film Türleri */
+.film-genres {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.film-genres h3 {
+  font-size: 20px;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.film-genres ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.film-genres li {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* Oyuncular */
+.film-actors {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.film-actors h3 {
+  font-size: 20px;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.film-actors ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Ortalanmış düzen */
+}
+
+.film-actors li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 150px;
+}
+
+/* Oyuncu Fotoğrafı */
+.film-actors li img {
+  width: 100px; /* Fotoğraf genişliği */
+  height: 100px; /* Fotoğraf yüksekliği */
+  object-fit: cover; /* Fotoğrafın kesilmeden sığması */
+  border-radius: 50%; /* Tam bir daire */
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.film-actors li p {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.film-actors li button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.film-actors li button:hover {
+  background-color: #b02a37;
+}
+
+/* İşlem Butonları */
+.buttons {
+  max-width: 800px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.buttons button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttons button:hover {
+  background-color: #0056b3;
+}
+
 .modal {
   position: fixed;
   top: 0;

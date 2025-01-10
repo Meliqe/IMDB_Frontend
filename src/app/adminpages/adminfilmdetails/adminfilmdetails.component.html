@@ -1,19 +1,19 @@
-<div *ngIf="filmDetails">
+<div *ngIf="filmDetails" class="film-details">
   <h1>{{ filmDetails.filmName }}</h1>
   <img [src]="'data:image/jpeg;base64,' + filmDetails.posterPath" alt="{{ filmDetails.filmName }}">
   <p>{{ filmDetails.filmDescription }}</p>
-  <p>Çıkış Tarihi: {{ filmDetails.filmReleaseDate | date :'yyyy' }}</p>
-  <p>Süre: {{ filmDetails.filmDuration }} dakika</p>
+  <p><strong>Çıkış Tarihi:</strong> {{ filmDetails.filmReleaseDate | date :'yyyy' }}</p>
+  <p><strong>Süre:</strong> {{ filmDetails.filmDuration }} dakika</p>
 </div>
 
-<div *ngIf="filmDetails.genres">
+<div *ngIf="filmDetails.genres" class="film-genres">
   <h3>Türler:</h3>
   <ul>
     <li *ngFor="let genre of filmDetails.genres">{{ genre.genreName }}</li>
   </ul>
 </div>
 
-<div *ngIf="actorsByFilmId">
+<div *ngIf="actorsByFilmId" class="film-actors">
   <h3>Oyuncular:</h3>
   <ul>
     <li *ngFor="let actor of actorsByFilmId">
@@ -29,6 +29,7 @@
   <button (click)="deleteFilm()">Film Sil</button>
   <button (click)="openActorModal()">Oyuncu Ekle</button>
 </div>
+
 <div class="modal" *ngIf="isUpdateModalOpen">
   <div class="modal-content">
     <h2>Film Güncelle</h2>

@@ -6,9 +6,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   const authService = inject(AuthService); // o yüzden bu şekilde enjecte etmeliyiz
   const protectedEndpoints = ['/userdetails','/addcomment','updateuser',
-    'usercomments','updatecomment','addorupdaterate','addfilmtolist','removefilmfromlist',
+    'usercomments','updatecomment','addorupdaterate','filmtolistadd','removefilmfromlist',
     'userlist','deletefilm','addactor','admingetfilmbyid','updatefilmbyid','updateactorbyid',
-    'deleteactorbyid','actorlistbyfilmid'];
+    'deleteactorbyid','actorlistbyfilmid','add-film'];
 
   //eğer istek korunan endpoinete yapılmıyorsa direkt gönderiyoruz
   //bu korunan endpointe istek yapmıyorsak

@@ -8,8 +8,8 @@
   <title>Document</title>
 </head>
 <body>
-<p>admin component</p>
-<div>
+<p>ADMIN DASHBOARD</p>
+<div class="film-ekle">
   <button (click)="openModal()">FİLM EKLE</button>
 </div>
 <div class="search-container">
@@ -21,7 +21,7 @@
     class="search-input"
   />
 
-  <!-- Filmler Listesi -->
+
   <ul class="film-list">
     <li
       *ngFor="let film of films | filterItems: searchFilmQuery : 'filmName'"
@@ -33,7 +33,7 @@
   </ul>
 </div>
 <div class="search-container">
-<!-- Arama Kutusu -->
+
 <input
   type="text"
   placeholder="Oyuncu ara..."
@@ -50,6 +50,7 @@
   </li>
 </ul>
 </div>
+
 <div class="modal" *ngIf="isModalOpen">
   <div class="modal-content">
     <h2>Film Ekle</h2>

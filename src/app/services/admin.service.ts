@@ -10,7 +10,7 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   adminAddFilm(film:{filmName:string,filmDescription:string,filmReleaseDate:Date,filmDuration:number,posterPath:string, genres:string[]}): Observable<any> {
-    return this.http.post(`${this.apiUrl}/addfilm`, film);
+    return this.http.post(`${this.apiUrl}/add-film`, film);
   }
   addActorToFilm(actor:{filmId:string,actorName:string,actorPhoto:string,actorBio:string,actorBirthDate:Date}): Observable<any> {
     return this.http.post(`${this.apiUrl}/addactor`, actor);

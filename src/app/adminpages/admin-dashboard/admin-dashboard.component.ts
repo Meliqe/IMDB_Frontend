@@ -58,6 +58,26 @@ export class AdminDashboardComponent {
   }
 
   addFilm(){
+    if (!this.addFilmObject.filmName|| this.addFilmObject.filmName.trim() === '') {
+      alert('Film ismi boş bırakılamaz!');
+      return;
+    }
+    if (!this.addFilmObject.filmDescription || this.addFilmObject.filmDescription.trim() === '') {
+      alert('Film açıklaması boş bırakılamaz!');
+      return;
+    }
+    if (!this.addFilmObject.filmDuration || this.addFilmObject.filmDuration <= 0) {
+      alert('Film süresi boş bırakılamaz ve sıfırdan büyük olmalıdır!');
+      return;
+    }
+    if (this.selectedGenres.length === 0) {
+      alert('En az bir tür seçmelisiniz!');
+      return;
+    }
+    if (!this.addFilmObject.posterPath|| this.addFilmObject.posterPath.trim() === '') {
+      alert('Oyuncu fotoğrafı seçilmelidir!');
+      return;
+    }
     this.addFilmObject.genres = this.selectedGenres.map((genreName) => ({
       genreName,
     }));

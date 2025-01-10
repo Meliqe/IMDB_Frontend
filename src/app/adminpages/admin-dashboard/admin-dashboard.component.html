@@ -9,6 +9,9 @@
 </head>
 <body>
 <p>admin component</p>
+<div>
+  <button (click)="openModal()">FİLM EKLE</button>
+</div>
 <div class="search-container">
   <!-- Arama Kutusu -->
   <input
@@ -46,6 +49,64 @@
     {{ actor.actorName }}
   </li>
 </ul>
+</div>
+<div class="modal" *ngIf="isModalOpen">
+  <div class="modal-content">
+    <h2>Film Ekle</h2>
+    <form (ngSubmit)="addFilm()">
+      <label for="filmName">Film Adı:</label>
+      <input id="filmName" [(ngModel)]="addFilmObject.filmName" name="requestFilmName" />
+
+      <label for="requestFilmDescription">Açıklama:</label>
+      <textarea
+        id="requestFilmDescription"
+        [(ngModel)]="addFilmObject.filmDescription"
+        name="requestFilmDescription"
+      ></textarea>
+
+      <label for="requestFilmReleaseDate">Çıkış Tarihi:</label>
+      <input
+        id="requestFilmReleaseDate"
+        type="date"
+        [(ngModel)]="addFilmObject.filmReleaseDate"
+        name="requestFilmReleaseDate"
+      />
+
+      <label for="requestFilmDuration">Süre (dk):</label>
+      <input id="requestFilmDuration" type="number" [(ngModel)]="addFilmObject.filmDuration" name="requestFilmDuration" />
+
+      <label>Türler:</label>
+      <div class="dropdown">
+        <button type="button" (click)="toggleGenreDropdown()">Türleri Seç</button>
+        <div class="dropdown-content" *ngIf="isGenreDropdownOpen">
+          <label *ngFor="let genre of availableGenres">
+            <input
+              type="checkbox"
+              [value]="genre.genreName"
+              [checked]="selectedGenres.includes(genre.genreName)"
+              (change)="toggleGenreSelection(genre.genreName)"
+            />
+            {{ genre.genreName }}
+          </label>
+        </div>
+      </div>
+
+      <ul>
+        <li *ngFor="let genre of selectedGenres">{{ genre }}</li>
+      </ul>
+      <label for="posterPath">Film Posteri:</label>
+      <input
+        id="posterPath"
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+      />
+      <div class="modal-buttons">
+        <button type="submit">Ekle</button>
+        <button type="button" (click)="closeModal()">İptal</button>
+      </div>
+    </form>
+  </div>
 </div>
 </body>
 </html>

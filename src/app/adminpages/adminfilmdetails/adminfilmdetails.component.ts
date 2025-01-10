@@ -68,6 +68,23 @@ export class AdminfilmdetailsComponent {
     }
   }
   addActor() {
+    if (!this.newActor.actorName || this.newActor.actorName.trim() === '') {
+      alert('Oyuncu adı boş bırakılamaz!');
+      return;
+    }
+    if (!this.newActor.photoPath || this.newActor.photoPath.trim() === '') {
+      alert('Oyuncu fotoğrafı seçilmelidir!');
+      return;
+    }
+    if (!this.newActor.biography || this.newActor.biography.trim() === '') {
+      alert('Oyuncu biyografisi boş bırakılamaz!');
+      return;
+    }
+    if (!this.newActor.birthDate || isNaN(new Date(this.newActor.birthDate).getTime())) {
+      alert('Doğum tarihi boş bırakılamaz veya geçersiz bir tarih girdiniz!');
+      return;
+    }
+
     this.adminService.addActorToFilm(this.newActor).subscribe({
       next: (response) => {
         alert('Oyuncu başarıyla eklendi!');

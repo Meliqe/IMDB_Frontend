@@ -9,7 +9,7 @@ export class AdminService {
   private apiUrl: string ="http://localhost:5286/api/admin"
   constructor(private http: HttpClient) { }
 
-  adminAddFilm(film:{filmName:string,filmDesc:string,filmReleaseDate:Date,filmDuration:number,posterPath:string, genres:string[]}): Observable<any> {
+  adminAddFilm(film:{filmName:string,filmDescription:string,filmReleaseDate:Date,filmDuration:number,posterPath:string, genres:string[]}): Observable<any> {
     return this.http.post(`${this.apiUrl}/addfilm`, film);
   }
   addActorToFilm(actor:{filmId:string,actorName:string,actorPhoto:string,actorBio:string,actorBirthDate:Date}): Observable<any> {
